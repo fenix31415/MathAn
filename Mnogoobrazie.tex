@@ -1,0 +1,92 @@
+\shapka{Многообразие(я)}
+
+\begin{defin*}
+    $O$ гомеоморфно $M$, если $\exists\,\phi$ (гомеоморфизм):\begin{itemize}
+        \item $\phi \colon O\to M$
+        \item $\phi$~--- непрерывно, сюръекция
+        \item $\phi$ обратимо и $(\phi)^{-1}$ непрерывно
+    \end{itemize}
+\end{defin*}
+
+\begin{defin*}
+    $\phi$~--- гомеоморфизм, если $\phi$~--- биекция, $\phi$ и $(\phi)^{-1}$ непрерывны.
+\end{defin*}
+
+\begin{defin*}
+    $M\subset \rmy$~--- простое $k$-мерное многообразие в $\rmy$ (непрерывное), если $M$ гомеоморфно $O\subset\rmy[k]$ ((видимо, $k\leqslant m$)). 
+\end{defin*}
+
+\begin{defin*}
+    $M\subset \rmy$~--- простое $k$-мерное $r$-гладкое многообразие, если\\
+    $\exists\,O\subset\rmy[k]$ (открытое), $\exists\,\phi\colon O\to\rmy$ (гомеоморфизм), $\phi(O)=M$,\\
+    $\phi\in C^r(O,\rmy)$, $\forall\,t\in O\,\operatorname{rank}\phi'(t)=k$
+\end{defin*}
+
+\begin{defin*}
+    Эту функцию $\phi$ называют параметризацией.
+\end{defin*}
+
+Байка про полусферу. Говорят, это простое двумерное 2-гладкое многообразие.
+
+\begin{Theorem*}[об эквивалентности определений]
+    $M\subset \rmy,\,1\leqslant k\leqslant \infty,\,1\leqslant r\leqslant \infty$.\\
+    \THEN $\forall\,p\in M$ эквивалентны:
+    \newcommand{\UU}{\mathcal{U}}
+    \newcommand{\UUp}{\overline{\mathcal{U}}}
+    \begin{enumerate}
+        \item $\exists\,\UU\subset\rmy$~--- открытое, $p\in\UU,\,M\cap\UU$~--- простое, $k$-мерное $C^r$-гладкое многообразие.
+        \item $\exists\,\UUp\subset\rmy$~--- открытое, $p\in\UU,\,\exists\,f_1,\ldots,f_{m-k}:\UUp\to\rmy[{}]\in C^r$ такие, что выполнено:
+        $x\in M\cap\UUp\Leftrightarrow\forall\,i: f_i(x)=0,\,\left\{\operatorname{grad} f_i(p)\right\}_{i=1}^{m-k}$~--- ЛНЗ.
+    \end{enumerate}
+\end{Theorem*}
+\begin{Proof}
+\newcommand{\UU}{\mathcal{U}}
+\newcommand{\UUp}{\overline{\mathcal{U}}}
+    $1\Rightarrow 2.\;\exists\,\phi\in C^r(O\subset\rmy[k],\rmy)$~--- параметризация $M\cap\UU$, $\phi_i$~--- координатные функции. $\operatorname{rank}\phi'(t_0)=k$, реализован на первых $k$ строках. $p=\phi(t_0)$.
+    
+    $L\colon\rmy\to\rmy[k]:x\mapsto(x_1,\ldots,x_k)$. $\det(L\circ\phi)'(t_0)=$ первые $k$ столбцов у $\phi'(t_0)\Rightarrow\;\neq 0$
+    
+    Мы попали под теорему о локальной обратимости. То есть $\exists\,W$~--- окрестность $t_0$, ($V\coloneqq L\circ\phi(W)$), что $(L\circ\phi)|_W$ взаимно однозначно $\Rightarrow L|_{\phi(W)}$ взаимно однозначно.
+    
+    То есть каждая точка $x$ из $\phi(W)$ определяется первыми $k$ координатами (пусть это будет вектор $x'=L(x)\in V$). То есть $\phi(W)$~--- график ($k$ координат~--- аргументы, $(m-k)$~--- значение) $f\colon V\to\rmy[m-k]$.
+    
+    $\psi\colon V\to W,\,\psi\coloneqq (L\circ\phi |_W)^{-1}$ (оно, как мы знаем, класса $C^r$). $\forall\,x'\in V$:\\
+    $L\circ\phi(\psi(x'))=x'=L(x',f(x'))\Rightarrow f(x')=\operatorname{proj}_{\mathbf{||\,\rmy[k]}}(\phi(\psi(x')))$ $\Rightarrow f\in C^r$ как композиция н гладких отображений. (так как $\phi(W)$ график, можно $L$ в равенстве убрать).
+    
+    Так как $\phi(W)$ открытое в $M\Rightarrow\exists\,\UUp\subset\rmy$~--- открытое, что $\phi(W)=M\cap\UUp,\,\UUp\subset V\times\rmy[m-k]$ (если не так, то пересечем. да, получится не пустое, ибо $\phi(W)\subset V\times\rmy$).\\
+    $F_j(x)\coloneqq f_j(L(x))-x_{k+j}$
+    
+    Тогда $x\in M\cap\UUp\Leftrightarrow x\in \Gamma_f\Leftrightarrow F_j=0$.
+    
+    Про градиенты.
+    $\begin{pmatrix}
+        \operatorname{grad}F_1\\
+        \cdots\\
+        \operatorname{grad}F_{m-k}
+    \end{pmatrix}=
+    \begin{pmatrix}
+        \chast{1}{1} & \cdots & \chast{1}{k} & -1 & \cdots & 0\\
+        \vdots & & \vdots & \vdots & \ddots & \vdots\\
+        \chast{m-k}{1} & \cdots & \chast{m-k}{k} & 0 & \cdots & -1
+    \end{pmatrix}$~--- ЛНЗ.
+    
+    $2\Rightarrow 1$. $p\leftrightarrow(a,b),\,a\in\rmy[k],\,b\in\rmy[m-k]$. Будем считать, что ранг реализуется на последних $(m-k)$ столбцах.
+    
+    Есть $F\colon\rmy\to\rmy[m-k]$, причем $F'_y(a,b)\neq 0$. Тогда по теореме о неявном отображении $\exists\,P\subset\rmy[k],\,Q\in\rmy[m-k]$~--- открытые и с центрами в $a$ и $b$ соответственно, $\exists\,f\in C^r(P,\rmy[m-k])$, такое что $x=(u,v)\in M\cap\UU\Leftrightarrow v=f(u)$. Тогда $\Phi(u)\colon u\mapsto (u,f(u))$~--- параметризация в окрестности $M\cap\UU$ точки $p$. К тому же $\Phi\in C^r(P,\rmy)$, ранг матрицы $\Phi'=k\,\forall\,x\in P$. Оно и логично, ведь  $F'(u)=
+\begin{pmatrix}
+    I \\
+    f'(u)
+\end{pmatrix}$
+\end{Proof}
+
+\begin{Corollary*}[о двух параметризациях]
+    $M\subset\rmy$~--- $k$-мерное, простое $r$-гладкое многообразие. $p\in M$, $U$~--- окрестность $p$. $\{\phi_i\colon O_i\subset\rmy[k]\to U\cap M\text{ (сюрьекции)}\}_{i\in\{1,2\}}$.
+    
+    \THEN $\exists\,\Psi\colon O_1\to O_2$~--- диффеоморфизм. Причем $\phi_1=\psi(\Phi_2)$
+\end{Corollary*}
+
+\begin{Proof}
+    Считаем, что ранг реализован на первых $k$ столбцах. Тогда $\phi_i \circ L$~--- диффеоморфизмы в некоторых окрестностях $p$. $\phi_1=\phi_2\circ(L\circ\phi_2)^{-1}\circ(L\circ\phi_1) \Rightarrow \Psi\coloneqq (L\circ\phi_2)^{-1}\circ(L\circ\phi_1)$.
+\end{Proof}
+
+\newpage

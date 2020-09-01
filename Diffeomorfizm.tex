@@ -1,0 +1,153 @@
+\shapka{Диффеоморфизм~--- ``сохраняет дифференцируемость''}
+	
+	\medskip
+	
+\begin{defin*}
+	\textbf{Область} (в $\rmy$)~--- открытое и связное множество.
+\end{defin*}
+
+\begin{defin*}
+    $f\colon O\subset\rmy\to\rmy$~--- диффеоморфизм, если\\
+    $f$~--- обратима, дифференцируема, $f^{-1}$~--- дифференцируема.
+\end{defin*}
+
+\begin{NB*} $f^{-1}\cdot f = id\Rightarrow \left(f^{-1}\right)'(f(x))\cdot f'(x)=E\Rightarrow \left(f^{-1}\right)'(y=f(x))={(f')}^{-1}(x)$.
+\end{NB*}
+
+\begin{Lemma*}[о почти состоявшейся локальной инъективности]
+    Пусть $F\colon O\to\rmy$, дифференцируема в $x_0$, $\det F'(x_0)\neq 0$. \THEN $\exists\, c,\, \delta>0,\,\forall\,h: \|h\|<\delta:\; |F(x_0+h)-F(x_0)|\geqslant c\cdot \|h\|$ (в частности, точки $F(x_0)$ и $F(x_0+h)$ не склеиваются).
+\end{Lemma*}
+
+\begin{Proof}
+\begin{multline*}
+    \|F(x_0+h)-F(x_0)\|=\|F'(x_0)\cdot h+\alpha(h)\cdot\|h\|\|\geqslant \\ \|F'(x_0)\cdot h\| - \|\alpha(h)\cdot \|h\| \|\geqslant (\tilde{c}-|\alpha(h)|)\cdot\|h\|\geqslant {\tilde{c}/2} \cdot \|h\|
+\end{multline*}
+При $\tilde{c}\coloneqq \dfrac{1}{\left\|{(F'(x_0))}^{-1}\right\|}$ предпоследний знак верен: (по свойству $\|Ax\|\leqslant \|A\|\cdot\|x\|$).\\
+$\|{(F'(x_0))}^{-1}\|\cdot\|F'(x_0)\cdot h\|\geqslant \|I\cdot h\| \Rightarrow \bigl|F'(x_0)\cdot h\bigr|\geqslant \tilde{c}\cdot\|h\|$. Тогда  выбираем $\delta$, чтобы на $\|h\|<\delta$ было $|\alpha(h)|<\tilde{c}/2$. Тогда верен и последний. $c\coloneqq \tilde{c}/2$.
+\end{Proof}
+
+\begin{NB*} ``$\forall x\, \det F'(x)\neq 0$'' $\nRightarrow$ инъективность. \end{NB*}
+\begin{Example*}
+    $F\colon \rmy[2]\setminus\{(0,0)\}\to\rmy[2]$, $(x,y)\mapsto (x^2-y^2, 2xy)$, $F' = \begin{pmatrix} 2x & -2y \\ 2y & 2x \end{pmatrix} \Rightarrow \det{F'}\neq 0$. Но это возведение в квадрат комплексного числа, поэтому каждая точка является образом каких-то двух.
+\end{Example*}
+
+\begin{Theorem*}[о сохранении области]
+    Пусть $F\colon O\subset\rmy\to\rmy$, $\forall x\in O\,\det{F'(x)}\neq 0$.
+    
+    \THEN $F(O)$~--- открыто.
+\end{Theorem*}
+\begin{Proof}
+\newcommand{\dist}{\operatorname{dist}}
+    $x_0\in O,\,y_0=F(x_0)$. Покажем, что $y_0$~--- внутренняя точка $F(O)$.\\
+    По лемме $\exists\,c, \delta:\;\forall\,h\in \overline{B(x_0, \delta)}\text{ (да, замкнутом)}:\;|F(x_0+h)-F(x_0)|\geqslant c\cdot \|h\|$ (образ сферы не проходит через $y_0$)
+    
+    Пусть $r\coloneqq 1/2\cdot\dist(y_0, F(S(x_0,\delta))),\;\dist(a, S)=\inf\{\rho(a, s),\,s\in S\}$. $F$~--- непрерывно, $S(x_0,\delta)$~--- компакт, $\Rightarrow F(S(x_0,\delta))$~--- компакт. $\rho$~--- непрерывна $\Rightarrow$ на компакте по теореме Вейерштрасса достигается минимум. Который, как мы уже понимаем, положителен (истории про образ сферы и точку $y_0$) и равен $R$.
+    
+    Хотим понять, что $B(y_0, R)\subset F(O)$. Пусть $y\in B(y_0, R)$, правда ли, что $\exists\,x:y=F(x),\,x\in B(x_0,\delta)$. Пусть $g(x)\coloneqq|F(x)-y|$, определенная на шаре.
+    \begin{itemize}
+        \item На границе ($S(x_0, \delta)$) $g(x)\geqslant R$ (иначе $2R\leqslant\|y_0-F(x)\|\leqslant\|F(x)-y\|+\|y_0-y\|<2R$)
+        \item При $x\coloneqq x_0: \|F(x_0)-y\|=\|y_0-y\|<R\Rightarrow$ минимум внутри шара (хотелось бы, чтобы он был $0$)
+    \end{itemize}
+\newcommand{\xOneM}{(x_1,\ldots,x_m)}
+    Понятно, что у $g(x)$ и у ${(g(x))}^2$ минимум там же. Раз минимум, то частные производные равны нулю: $L={\|(F(x)-y)\|}^2={(f_1\xOneM-y_1)}^2+{(f_2\xOneM-y_2)}^2+\ldots+{(f_m\xOneM-y_m)}^2$
+    
+    $$\begin{array}{cccc}
+		\text{дифф. по $x_1$:} & 2(f_1\xOneM-y_1)\cdot f'{}_1{}_{x_1} & +\ldots+ & 2(f_m\xOneM-y_m)\cdot f'{}_m{}_{x_1} = 0\\
+		\text{дифф. по $x_2$:} & 2(f_1\xOneM-y_1)\cdot f'{}_1{}_{x_2} & +\ldots+ & 2(f_m\xOneM-y_m)\cdot f'{}_m{}_{x_2} = 0\\
+		\vdots& \vdots &\vdots & \vdots\\
+		\text{дифф. по $x_m$:} & 2(f_1\xOneM-y_1)\cdot f'{}_1{}_{x_m} & +\ldots+ & 2(f_m\xOneM-y_m)\cdot f'{}_m{}_{x_m} = 0
+	\end{array}$$
+	($f'{}_i{}_{x_j}$~--- производная $i$-ой координатной функции по переменной $x_j$).
+	
+	Тогда $2F'(x)\cdot(F(x)-y)=\vec{0}$, а $F'(x)$ невырожденна, $\Rightarrow F(x)=y$
+\end{Proof}
+
+\begin{Corollary*}
+\newcommand{\rank}{\operatorname{rank}}
+    Пусть $F\colon O\subset\rmy\to\rmy[l],\,l<m$. $F$~--- дифференцируема на $O$, $\forall\,x\;\rank F'(x)=l$. \THEN $F(O)$~--- открыто в $\rmy[l]$
+\end{Corollary*}
+\begin{Proof}
+    Будем считать, что первые $l$ столбцов лнз в точке $x_0$ и окрестности.
+    
+    Пусть $\tilde{F}\colon O\to\rmy\coloneqq
+    \begin{bmatrix}
+       \text{\Large F} \\
+       x_{l+1} \\
+       \vdots \\
+       x_{m}
+    \end{bmatrix}$, тогда $\tilde{F}'=
+    \begin{pmatrix}
+        \Large\text{$F'$} & \cdots \\
+        \Large\text{$\varnothing$} & \Large\text{$E$}
+    \end{pmatrix}\Rightarrow \det{\tilde{F}'(x_0)\neq 0}\Rightarrow\tilde{F}(B(x_0, r))$~--- открыто.
+    $f(O)=\textit{proj}_{\rmy[l]}\tilde{F}(O)$ (подействовали непрерывной функцией).
+\end{Proof}
+
+Мемы про согнуть бумагу.
+
+\begin{Theorem*}[о гладкости обратного отображения]
+    $T\in C^r(O, \rmy)$, обратимо, $\forall\,x\;\det T'(x)\neq 0$. \THEN $T^{-1}\in C^r$ и $(T^{-1})'(y_0)=(T'(x_0))^{-1}$, где $y_0=T(x_0)$
+\end{Theorem*}
+\begin{Proof}
+\newcommand{\TopA}{\mathcal{A}}
+    \textbf{База}: $r=1$. $S\coloneqq T^{-1}$. $O$~--- открытое $\Rightarrow S^{-1}(O)$~ открытое (по теореме о сохранении области) $\Rightarrow S$~--- непрерывно (видимо (топологическая непрерывность)).
+    
+    $T(O)=O_1,\,y_0\in O_1,\,y_0=T(x_0),\,\TopA=T'(x_0)$. Правда ли, что $S$~--- дифференцируема в $y_0$?
+    
+    По лемме о почти инъективности: $\exists\,c,\,\delta>0:x\in B(x_0,\delta)\Rightarrow |T(x)-T(x_0)|\geqslant c\cdot|x-x_0|$.
+    \begin{itemize}
+        \item (знаем):\quad $T(x)-T(x_0)=\TopA(x-x_0)+\alpha(x)\cdot\|x-x_0\|$
+        \item ($x=S(y),\,x_0=S(y_0)$):\quad $y-y_0=\TopA(S(y)-S(y_0))+\alpha(S(y))\cdot\|S(y)-S(y_0)\|$ 
+        \item ($\times\,\TopA^{-1}$, перенесем) :\quad $S(y)-S(y_0)=\TopA^{-1}(y-y_0)-\TopA^{-1}(\alpha(S(y)))\cdot\|S(y)-S(y_0)\|$
+    \end{itemize}
+    
+    Покажем, что последняя штука~--- б.м. относительно $\|y-y_0\|$. $S$~--- непрерывно, можно положить $\|x-x_0\|=\|S(y)-S(y_0)\|<\delta$. Тогда $\|x-x_0\|\cdot\|\TopA^{-1}(\alpha(S(y)))\|\leqslant 1/c \|T(x)-T(x_0)\|\cdot\|\TopA^{-1}\|\cdot\|\alpha(S(y))\|=\|\TopA^{-1}\|/c\cdot\|y-y_0\|\cdot\|\alpha(S(y))\|$. $x=S(y)\to x_0\Rightarrow\alpha(S(y))\xrightarrow[y\to y_0]{}0$ ($S$ все еще непрерывна). Поэтому $S$~--- дифференцируема в $y_0$. Более того, $S'(y_0)=\TopA^{-1}=(T'(x_0))^{-1}$
+    
+    Про гладкость: $y\mapsto T^{-1}(y)=x\mapsto T'(x)=A\xmapsto{C^\infty}A^{-1}=S'(y)$.
+    Все эти преобразования непрерывные. Про первое было в начале базы, второе по условию, про третье еще поговорим, оно вообще из $C^\infty$. А композиция непрерывных~--- непрерывна. Значит, $S'(y)$~--- непрерывна, значит $S\in C^1$
+    
+    Да, последнее отображение из $C^\infty$. Оно так-то $\in \rmy[m^2]$ и его координатные функции (которых $m^2$)~--- это то, что даст алгоритм при поиске обратной матрицы. А даст он достаточно (бесконечно) гладкие выражения~--- дроби, где в числителе элементы союзной матрицы (многочлены от элементов ихсодной), а в знаменателе~--- детерминант исходной. То есть коорд функции~--- дробно-рац штуки, которые бесконечно гладкие.
+    
+    \textbf{Переход:} Все эти преобразования $C^{r-1}$ гладкие. Тогда первый переход из $C^{r-1}$ по предположению индукции, второй по условию, третий по жизни. А при композиции степень гладкости сохраняется. Значит, отображение $S'(y)\in C^{r-1}\Rightarrow S\in C^{r}$
+\end{Proof}
+
+\begin{Theorem*}[лемма о приближении отображения его линеаризацией]
+    $\mathcal{T}\in C(O,\rmy),x_0\in O$. \THEN $|T(x_0+h)-T(x_0)-T'(x_0)h|\leqslant M\cdot \|h\|,\,M=\sup\limits_{z\in \left[x_0,x_0+h\right]}{\|T'(z)-T'(x_0)\|}$
+\end{Theorem*}
+\begin{Proof}
+    $F(x) = T(x) - T'(x_0)\cdot x$ $\Rightarrow$ $F'(x) = T'(x) - T'(x_0)$,
+    
+    $|F(x)-F(x_0)|\leqslant\sup\limits_{z\in\left[x_0,x\right]}{\|F^{-1}(z)\|\cdot|x-x_0|}$
+\end{Proof}
+
+\begin{Theorem*}[о локальной обратимости]
+    Пусть $T\in C^1(O, \rmy),\,x_0\in O$. Матрица $T'(x_0)$ обратима. \THEN $\exists\,U\subset O$ точки $x_0$, что сужение $T$ на $U$~--- диффеоморфизм.
+\end{Theorem*}
+\begin{Proof}
+    Докажем, что сужение $T$ на окрестность удовлетворяет $\forall\,x\;\det T'(x)\neq 0$ и обратимо. Тогда по теореме о сохранении области $T(U)$ открыто, $T^{-1}$ той же гладкости (по теореме о гладкости обратного отображения).
+    
+    $c\coloneqq 1/\|(T'(x_0))^{-1}\|$. Выберем такой шар $U=B(x_0, r)\subset O$, чтобы $\det(T'(x))\neq 0$ и $\|T'(x)-T'(x_0)\|\leqslant c/4$
+    
+    Первое можем, так как $\det(T'(x))\in C^1$ (как композиция $T'(x)\colon\rmy[m] \to \rmy[m^2]$ (непрерывна по условию) и $\det\colon \rmy[m^2]\to \rmy[]$ (непрерывен как многочлен от координат); а также $\det(T'(x_0))\neq 0$.
+    
+    Второе можем, так как норма~--- непрерывная функция, в точке $x_0$ значение $= 0$.
+    
+    Поймем, почему эта окрестность подходит. Достаточно понять, что $T$ взаимно однозначно на $U$.
+    
+    $\forall\,h: \|T'(x_0)(h)\|\geqslant c\cdot\|h\|$~--- так специально выбрали $c$.
+    
+    $\forall\,x,\,z\in U: \|T'(x)-T'(z)\|\leqslant \|T'(x)-T'(x_0)\|+\|T'(x_0)-T'(z)\|\leqslant c/2$
+    
+    Пусть $y=x+h,\,h\neq 0:\\
+    T(y)-T(x)=T(x+h)-T(x)-T'(x)(h)+(T'(x)-T'(x_0))(h)+T'(x_0)(h)$.\\
+    Тогда $\|T(y)-T(x)\|\geqslant \|T'(x_0)(h)\|-\|T(x+h)-T(x)-T'(x)(h)\|-\|(T'(x)-T'(x_0))(h)\|\geqslant c\cdot\|h\|-\sup\limits_{z\in [x,y]}\|T'(z)-T'(x)\|\cdot\|h\|-\|T'(x)-T'(x_0)\|\cdot\|h\|> c\cdot\|h\|-c/2\|h\|-c/4\|h\|>0$
+\end{Proof}
+
+\begin{NB*}[Формулировка в терминах систем уравнений]
+    $m$ уравнений $\{f_i(x_1,\ldots,x_m)=y_1\}_{i=1}^{m}$, где $f_i\colon \rmy\to\rmy[],\,f_i\in C^r$.
+    
+    Если при $y=(b_1,\ldots,b_m)\;\exists!\,x=(a_1,\ldots,a_m))$ и $\det\left(\dfrac{\partial f_i}{\partial x_j}(x)\right)\neq 0$.
+    
+    \THEN для всех $y$ близких к $(b_1,\ldots,b_m)$ существует единственное решение, оно будет близкое к $(a_1,\ldots,a_m)$, и зависимости этого решения от $x$~--- гладкие. 
+\end{NB*}
+\newpage

@@ -1,0 +1,56 @@
+\shapka{Функциональные последовательности и ряды}
+
+\begin{defin*}
+	$\{f_n(x)\}_{n=1}^\infty\xrightarrow[X]{}f(x)$, если $\forall\,x_0\in X:\;\exists\,\lim\limits_{n\to\infty}f_n(x_0)=f(x)$.
+\end{defin*}
+
+\begin{defin*}
+	$\{f_n(x)\}_{n=1}^\infty\rightrightarrows f(x)$ на $X$, если $\sup\limits_{x\in X} |f(x)-f_n(x)|\xrightarrow{n\to\infty} 0$.\\
+	Ну или $\forall\,\varepsilon>0\;\exists\,N\;\forall\,n>N:\;\sup\limits_{x\in X}|f_n(x)-f(x)|<\varepsilon$.\\
+	Функциональный ряд называется равномерно сходящимся на множестве $X$, если равномерно сходится на $X$ последовательность его частичных сумм.
+\end{defin*}
+
+\begin{Theorem*}[Стокса--Зайдля о непрерывности]
+	$\{f_n(x)\}_{n=1}^\infty$, $f_n\rightrightarrows f$, $c\in X$, $f_i$ непрерывны в окрестности $c$. \THEN $f$ непрерывна в $c$.
+\end{Theorem*}
+
+\begin{Proof}
+	$|f(x)-f(c)|\leqslant|f(x)-f_n(x)|+|f_n(x)-f_n(c)|+|f_n(c)-f(c)|$. Первое и последнее слагаемое можно сделать меньше $\varepsilon/3$ из-за поточечной сходимости (которая следует из равномерной). $f_n$ непрерывна, поэтому для данного $n$ (которое мы придумали, оценивая первое и последнее) мы можем найти окрестность, где второе слагаемое будет $<\varepsilon/3$.
+\end{Proof}
+
+\begin{NB*}[1]
+	Можно без метрики, а в топологической непрерывности то же самое сказать. (ну логично, да).
+\end{NB*}
+
+\begin{NB*}[2!]
+	Локально равномерно сходится на $X$, это когда $\forall\,x\in X\;\exists\,U(x)\colon f_n\rightrightarrows f$ на $X$.
+\end{NB*}
+
+\begin{Corollary*}
+	$f_n\in C(X)$, $f_n\rightrightarrows f$ локально. \THEN $f\in C(X)$. (ну логично да, те же оценки сработают)
+\end{Corollary*}
+
+\begin{defin*}
+    Заведем метрику в пространстве (да-да, это пространство) непрерывных функций на $[a,b]$. А именно: $\rho(f,g)=\sup\limits_{x\in[a,b]}|f(x)-g(x)|$.
+\end{defin*}
+
+\begin{NB*}\leavevmode
+    \begin{itemize}
+        \item Видимо, ``$\sup$'' можно заменить на ``$\max$''.
+        \item Да, это метрика (про равенство нулю и симметрию понятно)\\
+        Про треугольник:\\$|f(x)-h(x)|\leqslant|f(x)-g(x)|+|g(x)-h(x)|$; возьмем максимум левой и правой части:\\
+        $\sup\limits_{x\in[a,b]}|f(x)-g(x)|\leqslant\sup\limits_{x\in[a,b]}\bigl(|f(x)-g(x)|+|f(x)-g(x)|\bigr)\leqslant\sup\limits_{x\in[a,b]}|f(x)-g(x)|+\sup\limits_{x\in[a,b]}|f(x)-g(x)|$, ведь $\max(a+b)\leqslant\max(a)+\max(b)$
+    \end{itemize}
+    
+\end{NB*}
+
+\begin{Theorem*}[метрика в пространстве непрерывных функций на компакте, его полнота]
+    Пространство $C([a,b])$ с метрикой $\rho$ из определения полно.
+\end{Theorem*}
+
+\begin{Proof}
+    Предъявим функцию, к которой сходится. Зададим в каждой точке. Зафиксируем $x_0\in[a,b]$:
+    Последовательность $f_n$ фундаментальна относительно $\rho\Rightarrow$ последовательность $\{f_n(x)\}$ фундаментальна, а так как она в $\rmy[]$, то имеет предел $\overline{x}$, то есть $f_n(x_0)\xrightarrow[n\to\infty]{}\overline{x}=f(x)$ поточечно. Задали. Как говорит высшая теория (а именно ``Теорема Стокса--Зайдля о непрерывности предельной функций'') $f(x)\in C[a,b]$.
+\end{Proof}
+
+\newpage

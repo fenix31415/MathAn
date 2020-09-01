@@ -1,0 +1,53 @@
+\newpage
+\shapka{Что стоит знать}
+
+\begin{defin*}
+    $\|A\|=\sup\limits_{\|x\|\leqslant 1}\|Ax\|=\sup\limits_{\|x\|\leqslant 1}(Ax,Ax)$~--- непрерывная функция на компакте (достигается максимум).
+\end{defin*}
+\begin{Theorem*}
+    $\|Ax\|\leqslant\|A\|\cdot\|x\|$
+\end{Theorem*}
+\begin{Proof}
+    $Ax=(A\dfrac{x}{\|x\|})\cdot\|x\|\Rightarrow \|Ax\|=\|A\dfrac{x}{\|x\|}\|\cdot\|x\|\leqslant \|A\|\cdot\|x\|$ (справа максимум по всем элементам, слева~--- какой-то элемент)
+\end{Proof}
+
+\begin{Theorem*}{Да, это норма.}\end{Theorem*}
+\begin{Proof}
+    \begin{enumerate}
+        \item (про неотрицательность) Очевидно (если подумать и про равенство нулю)
+        \item (про однородность с модулем) Следует из свойств нормы вектора
+        \item $\|(A+B)x\|=\|Ax+Bx\|\leqslant\|Ax\|+\|Bx\|\leqslant\|A\|\cdot\|x\|+\|B\|\cdot\|x\|=(\|A\|+\|B\|)\cdot\|x\|$
+    \end{enumerate}
+\end{Proof}
+
+\begin{Theorem*}
+    \newcommand{\Lin}{\operatorname{Lin}}
+    $A\in\Lin(\rmy,\rmy[l]),\,B\in\Lin(\rmy[l],\rmy[k])$. \THEN $\|BA\|\leqslant \|B\|\cdot\|A\|$
+\end{Theorem*}
+\begin{Proof}
+    $\|BAx\|\leqslant\|B\|\cdot\|Ax\|\leqslant\|B\|\cdot\|A\|\cdot\|x\|$
+\end{Proof}
+
+\begin{Theorem*}
+    $R=S\circ T$. $T$~--- дифференцируемо в $a$, $S$ в $b=T(a)$. \THEN $R$~--- дифференцируемо в $a$ и $R'(a)=S'(b)\cdot T'(a)$. И степень гладкости сохраняется.
+\end{Theorem*}
+\begin{Proof}
+\newcommand{\TopA}{\mathcal{A}}
+\newcommand{\TopB}{\mathcal{B}}
+    $\TopA\coloneqq T'(a),\,\TopB\coloneqq S'(b)$. Тогда $$T(a+h_1)-T(a)=\TopA(h_1)+\alpha(h_1)\cdot\|h_1\|;\qquad S(b+h_2)-S(b)=\TopB(h_2)+\beta(h_2)\cdot\|h_2\|$$
+    По непрерывности $\beta(0)=0$. $h_2\coloneqq T(a+h_1)-T(a):\; S(T(a+h_1))-S(T(a))=\TopB(T(a+h_1)-T(a))+\beta(T(a+h_1)-T(a))\cdot\|T(a+h_1)-T(a)\|\Rightarrow R(a+h_1)-R(a)=\TopB\cdot\TopA(h_1)+\|h_1\|\cdot\TopB(\alpha(h_1))+\beta(T(a+h_1)-T(a))\cdot\|T(a+h_1)-T(a)\|$.
+    
+    Пусть $\gamma(h_1)$~--- последние два слагаемых. Поймем, что она является б.м. относительно $h_1$. $\|\gamma(h_1)\|/\|h\|\leqslant \|\TopB\|\cdot\|\alpha(h_1)\|+\|T(a+h_1)-T(a)\|/\|h\|\cdot\|\beta(T(a+h_1)-T(a))\|$. $\|T(a+h_1)-T(a)\|=\mathcal{O}(\|h\|)$, при $h\to 0$, $\beta(T(a+h_1)-T(a))=\beta(h_2)\xrightarrow[h_1 \to 0]{}0$. А то, что $T(a+h_1)-T(a)\xrightarrow[h_1\to 0]{}0$~--- вроде логично.
+    
+    Про степень гладкости по индукции.
+\end{Proof}
+
+\begin{defin*}
+	Длина гладкого пути $\gamma\in C([a,b],\rmy)$: $l(\gamma)\eqdef\int\limits_a^b|\gamma'(t)|\,dt$
+\end{defin*}
+
+\begin{defin*}
+	(де)Градиент. $\phi\colon\rmy\to\rmy{}$: $\operatorname{grad}\phi=\left(\chast{\phi}{x_1},\ldots,\chast{\phi}{x_m}\right)$
+\end{defin*}
+
+\newpage

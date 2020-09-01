@@ -1,0 +1,33 @@
+\shapka{Local memes}
+
+\begin{defin*}
+	Есть поверхность $\Phi\colon E\subset\rmy[m+n]\to\rmy[n] = 0$ и функция $f\colon E\to\rmy[]$. Тогда точка $x_0\in E$~--- точка относительного локального максимума функции $f$, если $\exists\,U(x_0)\;\forall\,x\in U(x_0)\cap E,\,\Phi(x)=0\colon f(x)\leqslant f(x_0)$.\\
+	Минимум аналогично. А экстремум~--- это когда или мин, или макс.
+\end{defin*}
+
+\begin{Theorem*}[необходимое условие относительного локального экстремума]
+	$f$ и $\Phi$ гладкие. Пусть $a\in E$, $\Phi(a)=0$, $a$~--- точка относительного локального экстремума.\\
+	$\operatorname{rank} \Phi'(a)=n$. \THEN $\exists\,\lambda\in\rmy[n]\colon\left\{\begin{aligned}
+		&f'(a)=\lambda\cdot\Phi'(a)\\
+		&\Phi(a)=0
+	\end{aligned}\right.$
+\end{Theorem*}
+
+\begin{Proof}
+	$a=(a_x,a_y)$. Ранг реализуется на последних $n$ столбцах. Тогда по теореме о неявном отображении $\exists\,\phi\colon U(x_0)\to V(y_0)$, что $\forall\,x\in U(a_x)\;\Phi(x,\phi(x))=0$. $g(x)\coloneqq f(x,\phi(x))$, ее локальный экстремум $a_x$.\\
+	Тогда $f'_x(a)+f'_y(a)\cdot\phi'(a_x)=0$ (необходимое условие локального экстремума). Тогда $(f'_x(a)+\lambda\Phi'_x(a))+(f'_y(a)+\lambda\Phi'_y(a))\cdot\phi'(a_x)=0$ (сложили два выражения, равные нулю, домножив второе на $\lambda$). $\lambda\coloneqq-(f'_y(a))(\Phi'_y(a))^{-1}$, тогда обе скобки обнулятся.
+\end{Proof}
+
+\begin{Theorem*}[достаточное условие экстремума]
+	$f,\,\Phi$ гладкие. $a\in E$, $\Phi$ не вырождена в $a$. И выполнено необходимое условие. Из $\phi'_x dx+\phi'_y dy=0$ выражаем $dy$. Подставляем в второй дифференциал формы Лагранжа. Получится квадратичная форма, если определенно положительна/отрицательна~--- минимум/максимум, если неопределенная~--- как повезет.
+\end{Theorem*}
+
+\begin{Theorem*}[вычисление нормы линейного оператора с помощью собственных чисел]
+	$A$~--- линейный оператор. \THEN $\|A\|=\max\limits_{\lambda_i}\{\sqrt{\lambda}\}$, где $\lambda_i$~--- собственное число $A^T A$.
+\end{Theorem*}
+
+\begin{Proof}
+	$\|A\|^2=\max\limits{|x|=1} \|Ax\|^2=\max\limits_{|x|=1}\langle Ax,Ax\rangle=\max\limits_{|x|=1}\langle A^T Ax, x\rangle$. Там видимо только при собственных числах косинус будет $1$.
+\end{Proof}
+
+\newpage

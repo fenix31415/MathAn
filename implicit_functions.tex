@@ -1,0 +1,109 @@
+\shapka{Неявные отображения}
+
+Пусть есть гладкое отображение $F\colon O\to \rmy[n]$, $O$~--- открытое подмножество $\rmy[n+m]=\rmy[n]\times\rmy[m]$, $z\in \rmy[n+m] \leftrightarrow (x,y),\,x=(x_1,\ldots,x_m)\in\rmy[m],\,y=(y_1,\ldots,y_n)\in\rmy[n]$
+
+Пусть $F_1,\ldots,F_n$~--- координатные функции. Тогда
+\begin{equation*}
+    F'(x,y)=
+\begin{pmatrix}
+    \chast{F_1}{x_1} & \cdots & \chast{F_1}{x_m} & \chast{F_1}{y_1} & \cdots & \chast{F_1}{y_n} \\
+    \vdots & & \vdots & \vdots & & \vdots \\
+    \chast{F_n}{x_1} & \cdots & \chast{F_n}{x_m} & \chast{F_n}{y_1} & \cdots & \chast{F_n}{y_n}
+\end{pmatrix}
+\end{equation*}
+    
+Правая и левая часть~--- $F'_x$ и $F'_y$ соответственно.
+
+\begin{defin*}
+    $P, Q$~--- открытые в $\rmy[m]$ и $\rmy[n]$ соответственно, $p\times Q\subset O$. Уравнение $F(x,y)=0$ определяет в $P\times Q$ неявное отображение, если $\exists f\colon P\to Q: F(x,f(x))=0 \forall\,x\in P$.
+\end{defin*}
+Уравнение определяет единственное неявное отображение тогда и только тогда, когда $\forall\,x\in P\;\exists!\;y\in Q: F(x,y)=0$
+
+\begin{Theorem*}[о неявном отображении]
+    $F\colon O\subset\rmy[n+m]\to\rmy[n]$, $F\in C^r(O, \rmy[n+m])$, $(a,b)\in O$, $F(a,b)=0$, $F_y'(a,b)$~--- обратима.
+    
+    \THEN \begin{itemize}
+        \item $\exists\,P\in\rmy[m],\,a\in P$ (открытое)
+        \item $\exists\,Q\in\rmy[n],\,b\in Q$ (открытое)
+        \item $P\times Q\subset O$
+        \item $\exists!\,\phi\colon P\to Q,\,\phi\in C^r$, что $F(x,\phi(x))=0$
+        \item И к тому же $\phi'(x)=-\bigl(F'_y(x,f(x))\bigr)^{-1}\cdot F'_x(x, f(x))$
+    \end{itemize}
+\end{Theorem*}
+\begin{Proof}
+    Пусть $\Phi\colon O\to \rmy[m+n]: \Phi(x,y)=(x,F(x,y)),\,(x,y)\in O$. Тогда $\Phi$~--- r-гладкое (уже на $\rmy[n+m]$), $\Phi(a,b)=(a,0)$. Оно переводит точки-решения в точки из $\rmy\times\{0\}$.
+    
+    $\Phi'(x,y)=\begin{pmatrix}
+        \Large\text{$E$} & \Large{\text{$0$}} \\
+        \Large\text{$F'_x$} & \Large\text{$F'_y$}
+    \end{pmatrix}$. Тогда $\det{\Phi'(x,y)}\neq 0 \Rightarrow $ (по теореме о локальной обратимости) найдется окрестность $\overline{U}=Q'\times Q$ точки $(a,b)$, что сужение $\Phi$ на $\overline{U}$ есть диффеоморфизм. $O_0=\Phi(\overline{U})$~--- открыто и содержит $(a,0)=\Phi(a,b)$. $\Psi=\left(\Phi\Big{|}_U\right)^{-1}$.
+    
+    Раз $\Phi$ не меняет первые $m$ координат, то $\Psi$ тоже. $\Psi(u,v)=(u,H(u,v)),\,H\colon O_0\to\rmy[n]$
+    $\exists\,P\subset\rmy[m],\,a\in P,\,P\subset (O_0\cup\rmy[m])$ (ибо $O_0\cap\rmy[m]$~--- открыто в $\rmy$) ((т.к. $O_0$ открытое)).
+    
+    $f(x)\overset{\mathrm{def}}{=}H(x,0)$. Проверим:
+    \begin{itemize}
+        \item $\Psi(P\times\{0\})\subset\Psi(O_0)=U\Rightarrow f(P)\subset Q$ (когда забили на первые $m$ координат)
+        \item $f\in C^r(P,\rmy[n])$ ($\Psi\in C^r(O_0,\rmy[m+n])$ по теореме о гладкости обратного отображения)
+        \item $y=f(x): (x, F(x,y))=\Phi(x,y)=\Phi(x,H(x,0))=\Phi(\Psi(x,0))=(x,0)\Rightarrow F(x,y)=0$
+        
+        Дифференцируем. (как композицию): $g(x)\colon \rmy[n]\to \rmy[n+m],\;x\mapsto (x,f(x))$\\
+        $\left(F(g(x))\right)=F'(g(x))\cdot g'(x)=(F'_x(x,f(x)),F'_y(x,y))\cdot \begin{pmatrix}
+            $I$\\
+            $f'(x)$
+        \end{pmatrix}$ 
+        
+        $\Rightarrow F'_x(x,f(x))\cdot I+F'_y(x,f(x))\cdot f'(x)=0\Rightarrow -\bigl(F'_y(x,f(x))\bigr)^{-1}\cdot F'_x(x,f(x))=f'(x)$
+        \item Поч единственна. $\Phi(x,y)=(x,0)\Rightarrow (x,y)=\Psi(\Phi(x,y))=\Psi(x,0)=(x,H(x,0))=(x,f(x))\Rightarrow f(x)$ определена однозначно.
+    \end{itemize}
+\end{Proof}
+
+\begin{NB*}[формулировка теоремы о неявном отображении в терминах системы уравнений]
+    Система уравнений $\{f_i(x_1,\ldots,x_m,y_1,\ldots,y_n)=0\}_{i=1}^n$, все $f_i\in C^r$
+    
+    $(x,y)=(a,b)$~--- решение и $\det\left(\dfrac{\partial f_i}{\partial y_j}(a,b)\right)\neq 0$
+    
+    \THEN $\exists\,P\in\rmy,\,Q\in\rmy[n]$ открытые, содержащие $a$ и $b$ соответственно, что $\exists!\,\phi\colon P\to Q,\,\phi\in C^r$ и $\forall\,x\in P: (x,\phi(x))$~--- решение.
+    \end{NB*}
+%(??? лист жалко.. нада поплотнее сделать)
+%Лучше напиши что-то еще полезное :) Не придется делать более плотный лист
+%И да, счас бы жалеть кучку битов
+%тупа на памят оставлю
+
+Полезное.
+
+\begin{NB*}
+    Выведем теорему о локальной обраимости через теорему об обратном отображении (а не наоборот, как в докве последней).
+\end{NB*}
+\begin{Proof}
+    Пусть дали $T\colon O\to \rmy,\,T\in C^r,\,T'(x_0)$ обратима. Рассмотрим $F\colon \rmy\times O\to\rmy,\,F(x,y)=T(y)-x$. Ее область определения открыта, она $r$-гладкая, $(a,b)=(T(x_0),x_0),\,F(a,b)=0$, $F'_y(a,b)=T'(a,b)$ обратима.\\
+    Тогда $F$ подпадает под теорему о неявном отображении $\Rightarrow\exists\,P\in\rmy,\,Q\in O,\,T(x_0)\in P,\,x_0\in Q$, на которых $\exists!\,f\colon P\to Q$, что $F(x,f(x))=T(f(x))-x=0$.\\
+    Кажется, мы нашли окрестность точки $x_0$ и $f$~--- обратную функцию. Ну и понятно, что она гладкая и мы даже умеем ее дифференцировать (точно также, как и хотим).
+\end{Proof}
+
+\begin{Example*}[Задача (с лекции)]
+    Найти $z'_x$ в точке $u=1,v=2$.
+    $$\left\{\begin{aligned}
+        x&=u^2-v^2\\
+        y&=2u v\\
+        z&=u+3v
+    \end{aligned}\right.$$
+    
+\end{Example*}
+\textbf{Решение.}
+    $3$ уравнения $\Rightarrow$ $3$ функции. $z$ точно функция, $x$ точно переменная. Пусть $u,v$~--- еще две функции. $u=1,\,v=2 \Rightarrow x=-3,\,y=4,\,z=7$. Дифференцируем по $x$. Первые два содержат две неизвестные~--- $u'_x$ и $v'_x$. Решаем эту систему $2\times 2$. (методом выписывания ответа, разумеется) $$\left\{\begin{aligned}
+        (2u)u'_x-(2v)v'_x =& 1\\
+        (2v)u'_x+(2u)v'_x=&0\\
+        u'_x+3v'_x=&z'_x
+    \end{aligned}\right.\quad \Leftrightarrow\quad
+   \left\{\begin{aligned}
+        u'_x=&\dfrac{2u}{4u^2+4v^2}\\
+        v'_x=&\dfrac{-2v}{4u^2+4v^2}
+    \end{aligned}\right.\quad \xrightarrow{u=1,v=2}\quad
+    \left\{\begin{aligned}
+        u'_x=&\dfrac{1}{10}\\
+        v'_x=&\dfrac{-1}{5}
+    \end{aligned}\right.$$
+    $\Rightarrow z'_x=u'_x+3v'_x=-1/2$
+\newpage
+%knftka

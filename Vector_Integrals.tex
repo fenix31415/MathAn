@@ -1,0 +1,165 @@
+\shapka {Векторные поля и интегралы}
+
+\begin{defin*}
+    $V\colon O\to \rmy$ ($O$ открыто)~--- векторное поле. Если не оговорено обратное, считаем, что $V\in C(O,\rmy)$
+\end{defin*}
+
+\begin{defin*}
+    $V$~--- векторное поле, $\gamma\colon[a,b]\to\rmy$~--- кусочно-гладкий путь.
+    Интеграл векторного поля по кусочно-гладкому пути:
+    $I(V, \gamma)\eqdef\int\limits_a^b\langle V(\gamma(t)),\gamma'(t)\rangle\,dt$
+\end{defin*}
+
+{\textbf{Свойства. (Старые)}}
+\begin{itemize}
+	\item $I(\alpha V+\beta U,\gamma)=\alpha I(V,\gamma)+\beta I(U,\gamma)$ (следует из линейности $\langle\cdot,\cdot\rangle$ и $\int^b_a$) 
+	\item $I(V,\gamma)=I(V,\gamma\vert_{[a,c]})+I(V,\gamma\vert_{[c,b]})$ (следует из аддитивности для $\int^b_a$)
+	\item $\phi\in C^1([\alpha,\beta]\xrightarrow{на}[a,b])$, растет, и к тому же $\phi(\alpha)=a$ и $\phi(\beta)=b$. Тогда $I(V,\gamma)=I(V,\gamma\circ\phi)$
+	($\int_a^b\langle V(\gamma(t)),\gamma'(t)\rangle\,dt = 
+	\int_\alpha^\beta\langle V(\gamma(\phi(t))),\gamma'(\phi(t))\cdot\phi'(t)\rangle\,dt$~--- если учесть, что $\phi'(t)$~--- число, которое ввиду линейности из скалярки можно вынести, то получится знакомая аналогичная теорема о замене параметра в интегрировании).
+\end{itemize}
+
+\begin{defin*}
+	Произведение путей $\bigl\{\gamma_i\colon[a_i,b_i]\to\rmy\bigr\}_{i=1}^2$ ($b_1=a_2$): $$(\gamma_1\gamma_2)(t)=\gamma(t)=\begin{cases*}
+		\gamma_1(t), & $t\in[a,b]$ \\
+		\gamma_2(t-b+c), & $t\in[b,b+d-c]$
+	\end{cases*}$$
+\end{defin*}
+
+\begin{defin*}
+	$t^{-1}\colon[a,b]\to\rmy\coloneqq\gamma(b+a-t)$~--- обратный путь.
+\end{defin*}
+
+\textbf{Свойства. (Новые)}
+\begin{itemize}
+	\item $I(V,\gamma_1\gamma_2)=I(V,\gamma_1)+I(V,\gamma_2)$ (логично да)
+	\item $I(V,\gamma)=-I(V,\gamma^{-1})$ ($t$ заменим на $b+a-t$, $(-1)$ вылезет из-за этого)
+	\item $I(V,\gamma)\leqslant\max\limits_{x\in[a,b]}\|V(x)\|\cdot l(\gamma)$ (оценим скалярку по КБ(Ш), потом оценим сам интеграл и получим формулу длины пути:\\
+	$I(V,\gamma)=\int_a^b\langle V(\gamma(t)),\gamma'(t)\rangle\,dt\leqslant\int_a^b\|V(\gamma(t))\|\cdot|\gamma'(t)|\,dt\leqslant\max\limits_{x\in[a,b]}\|V(x)\|\cdot\int_a^b|\gamma'(t)|\,dt$
+\end{itemize}
+
+\begin{defin*}
+	Поле $V$~--- потенциально, если $\exists\,f\in C^1(O)$, что $V=\operatorname{grad}f$. $f$~--- потенциал.
+\end{defin*}
+
+\begin{Theorem*}
+	Потенциал определен однозначно с точностью до константы.
+\end{Theorem*}
+
+\begin{Proof}
+	$V=\operatorname{grad}f_1=\operatorname{grad}f_2\Rightarrow\operatorname{grad}(f_1-f_2)=0$($m$-мерный) $\Rightarrow (f_1-f_2)'=0$ по любому направлению и в любой точке. Ну тогда $f_1-f_2=const$. 
+\end{Proof}
+
+\begin{defin*}
+	Интеграл не зависит от пути в области $O$, если он определяется только концами.
+\end{defin*}
+
+\begin{defin*}
+	Петля~--- путь, где конец совпал с началом.
+\end{defin*}
+
+\begin{Theorem*}[характеризация потенциальных векторных полей в терминах интегралов]
+	Три утверждения эквивалентны:
+	\begin{enumerate}
+		\item $V$~--- потенциальное
+		\item $I(V,\gamma)$ не зависит от пути
+		\item $\forall$ кусочно-гладкой петли $I(V,\gamma)=0$
+	\end{enumerate}
+\end{Theorem*}
+
+\begin{Proof}
+	(3) $\Rightarrow$ (2). Пусть дали 2 конца $A,B\in O$ и два пути $\gamma_1,\gamma_2$ с этими концами. Пусть $\gamma=\gamma_1\cdot\gamma_2^{-1}$~--- вполне себе кусочно-гладкая петля.\\
+	Тогда $0=I(V,\gamma)=I(V,\gamma_1)+I(V,\gamma_2^{-1})=I(V,\gamma_1)-I(V,\gamma_2^{-1})\Rightarrow I(V,\gamma_1)=I(V,\gamma_2)$ 
+	
+	(2) $\Rightarrow$ (3). Дали контур, мы его разбили на два пути и провели те же рассуждения.
+	
+	(1) $\Rightarrow$ (2). Зафиксируем точки $A(x_1^0,\ldots,x_m^0)$ и $B(x_1^1,\ldots,x_m^1)$. Рассмотрим путь\\
+	$\gamma(t)=(x_1(t),\ldots,x_m(t))$ с концами в точках. Продифференцируем по $t$ функцию $f(\gamma(t))$:\\
+	$$\chast{f}{t}(t)=\chast{f}{x_1}(\gamma(t))\cdot\chast{x_1}{t}(t)+\dots+\chast{f}{x_m}(\gamma(t))\cdot\chast{x_m}{t}(t)$$
+	
+	Еще поймем, что такое $\langle V(\gamma(t)),\gamma'(t)\rangle$. Так как $f$~--- потенциал $V$, то $\left(V(x)\right)_i = \chast{f}{x_i}(x)\Rightarrow \langle V(\gamma(t)),\gamma'(t)\rangle=\chast{f}{x_1}(\gamma(t))\cdot\chast{\gamma}{x_1}(t)+\ldots+\chast{f}{x_m}(\gamma(t))\cdot\chast{\gamma}{x_m}(t)$. Тогда
+	
+	$$I(V,\gamma)=\int_a^b\langle V(\gamma(t)),\gamma'(t)\rangle\,dt=\int_a^b\chast{f}{t}dt=f(\gamma(b))-f(\gamma(a))$$
+	Вот, от пути не зависит, только от концов. А еще эта формула называется ``обобщенная формула Ньютона-Лейбница''
+	
+	(2) $\Rightarrow$ (1). Зафиксируем точку $A(x_1^0,\ldots,x_m^0)$ и пусть $f\colon x\mapsto I(V,\gamma)$, где $\gamma$~--- путь из $A$ в $x$. Так как (2), то определили $f$ корректно.
+	
+	Поймем, что $f(y)-f(x)=I(V,\gamma)$, где $\gamma$~--- путь от $x$ до $y$. Ну логично, когда будем считать путь до $y$, выберем путь через $x$. Тогда $f(y)=f(x)+I(V,\gamma)$.
+	
+	Докажем, что $\chast{f}{x_i}=V_i$. Посчитаем производную по определению: $\lim\limits_{c\to 0} (f(x+c e_i)-f(x))/c$. $f(x+c e_i)-f(x)=I(V,\gamma)=\int_0^c\langle V(x+t e_i),\gamma'(t)\rangle\,dt=\int_0^c V_i(x+t e_i)dt=c\int_0^1 V_i(x+c t e_i)dt$. Тогда $\chast{f}{x_i}=\lim\limits_{c\to 0} \int_0^1 V_i(x+c t e_i)dt=V_i(x)$
+	
+	Первое равенство только что поняли, второе по определению, третье~--- поняли, что в скалярке выжило только одно слагаемое (так как мы движемся вдоль оси $x_i$, поэтому $\gamma'(t)$ везде, кроме $i$, содержит нули), четвертое~--- заменили в интеграле $t$ на $c t$.
+	
+	Таким образом поняли, что эта $f$ нам подходит, так как $V=\operatorname{grad} f$.
+\end{Proof}
+
+\begin{Theorem*}[необходимое условие потенциальности]
+	$V\colon O\to\rmy$, гладкое потенциальное векторное поле. \THEN $\forall\,x\in O:\;\chast{V_i}{x_j}(x)=\chast{V_j}{x_i}(x)$
+\end{Theorem*}
+
+\begin{Proof}
+	$\chast{V_i}{x_j}(x)=\dfrac{\partial^2 f}{\partial x_i\partial x_j}(x)=\dfrac{\partial^2 f}{\partial x_j\partial x_i}(x)=\chast{V_j}{x_i}(x)$
+\end{Proof}
+
+\begin{Theorem*}[лемма Пуанкаре]
+	$O$~--- открытая выпуклая область, $V\in C^1(O,\rmy)$, удовлетворяет необходимому условию потенциальности. \THEN $V$ потенциально.
+\end{Theorem*}
+
+\begin{Proof}
+	$O$ содержит начало координат. Тогда $\forall\,x\in O$ путь $\gamma_x(t)=tx\in O$. $f(x)=I(V,\gamma_x)$. Поймем, что подошло. $f(x)=\int_0^1\langle V(\gamma_x(t)),\gamma'_x(t)\rangle\,dt=\sum_{i=1}^m x_k\int_0^1 V_i(t x)dt$.
+	Дифференцируем по $x_j$ (в каждом слагаемом ровно один раз он встретится, кроме того, где $i=j$) (интегралы дифференцируем по правилу лейбница): $\chast{f}{x_j}(x)=\sum_{i=1}^m x_k\int_0^1 t\chast{V_i}{x_j}(t x)dt + \int_0^1 V_j(tx)dt=\int\limits_0^1 \left(V_j(t x)+t\sum_{i=1}^m x_i\chast{V_j}{x_i}\right)dt=\int_0^1\left(t V_j(t x)\right)'_t dt=V_j(x)$.
+\end{Proof}
+
+\begin{NB*}
+	Из выпуклости мы пользовались только ``звездностью'' относительно центра координат. Очевидно, это более слабое условие и теорема верна для таких областей тоже.
+\end{NB*}
+
+\begin{defin*}
+	$V\colon O\to\rmy$~--- локально потенциальное, если $\forall\,x\in O\;\exists\,U(x)$, что $V|_{U(x)}$ потенциально.
+\end{defin*}
+
+\begin{Corollary*}
+	Гладкое поле локально потенциально тогда и только тогда, когда выполнено необходимое условие потенциальности.
+\end{Corollary*}
+
+\begin{Theorem*}[лемма о гусенице]
+	$O\subset\rmy$, $\forall\,x\in O$ определили $U(x)$, $\gamma\colon[a,b]\to O$ непрерывный. \THEN существует дробление $a=t_0<t_1<\ldots<t_{n-1}<t_n=b$ и шары $B_k(z_k,r_k)\subset U(z_k):\;\forall\,k\in[1..n]\;\gamma|_{[t_{k-1},t_k]}\subset B_k$
+\end{Theorem*}
+
+\begin{Proof}
+	\newcommand{\acl}{\overline{\vphantom{\beta}\alpha_c}}
+	\newcommand{\bcl}{\overline{\beta_c}}
+	Выберем $c\in[a,b]$. Для него определим $B_c\coloneqq B(\gamma(c), r_c)$, чтобы $B_c\subset U(\gamma(c))$, а также момент входа и выхода пути в него (с прохождения центра):\\ $\acl\coloneqq\inf\{\alpha\in[a,b]:\gamma|_[\alpha,c]\subset B_c\};\;\bcl\coloneqq\sup\{\beta\in[a,b]:\gamma|_[\beta,c]\subset B_c\}$. Так как $\acl<c<\bcl$, то выберем такие $\alpha_c$ и $\beta_c$, что $\acl<\alpha_c<c<\beta_c<\bcl$.
+
+	При $c=a$ или $c=b$ выберем $\alpha_a$ и $\beta_b$ так, чтобы соответствующие отрезки покрывали $a$ и $b$ (немного сдвинув).
+	
+	Мы получили открытое покрытие отрезка $[a,b]$: $\bigcup\limits_c (\alpha_c,\beta_c)$. Нам дали конечное покрытие. ``Прочистим'' его~--- если есть интервал, который покрывается объединением каких-то других, то его удалим. Теперь для каждого интервала можно выбрать $d_i$, которая лежит только в нем. Отсортируем отрезки по возрастанию $d_i$.
+	
+	Возьмем интервал $i_1$ с $d_1$. Он покрывает все, что левее $d_1$ (иначе его покрывал бы другой интервал $i_j$, правый конец которого не может находиться левее правого конца $i_1$~--- иначе бы его выкинули. Ну тогда $d_j$ левее $d_1$). Возьмем следующий интервал $i_2$, его левая граница находится левее правой границы $i_1$ (аналогично: тогда это покрывает какойто интервал $i_j$, причем $d_j$ правее $d_2$, да к тому же правее всего $i_2$, то есть он полностью накрывает $i_2$).
+	
+	Таким образом, мы поняли, что $i_k$ правым концом налегает на $i_{k+1}$, и крайние интервалы покрывают концы отрезка. Тогда в качестве $t_k$ берем любое число из $(i_{k+1}.left,i_k.right)$, ну и $t_0=a,\,t_n=b$, а в качестве шаров~--- $B_k$. Если точка $x$ принадлежит интервалу $i_k$, то $\gamma(x)\in B_k$~--- что и хотели.
+\end{Proof}
+
+\begin{defin*}
+	Эту штуку (разбиение с соответствующими шарами) назовем \textbf{гусеницей}.
+	Два пути \textbf{похожи}, если есть общая гусеница (важны только шары, разбиения могут быть и разные).
+\end{defin*}
+
+\begin{Theorem*}[лемма о равенстве интегралов по похожим путям]
+	\newcommand{\gammap}{\overline{\gamma}}
+	$V$~--- локально потенциальное векторное поле. $\gamma,\gammap$~--- похожие кусочно-гладкие пути. \THEN $I(V,\gamma)=I(V,\gammap)$.
+\end{Theorem*}
+
+\begin{Proof}
+	Пусть $f_1$~--- потенциал в $B_1$. Выберем потенциал $f_2$ (а мы можем, их же много, все на константу отличаются) в $B_2$, чтобы $f_1(\gamma(t_1))=f_2(\gamma(t_1))$, и так для всех дальше. Тогда (ведь $[t_{i-1},t_i]\subset B_i$) $I(V,\gamma)$ разобьется в сумму интегралов на отрезках разбиения, которые, в свою очередь, равны разности потенциалов. Из-за телескопического эффекта останется разность потенциалов в точках $a$ и $b$. Как и для второго пути.
+\end{Proof}
+
+\begin{Theorem*}[о похожести путей, близких к данному]
+	$\gamma$~--- путь. \THEN $\exists\,\delta(\gamma,\{B_i\})$, что если пути $\gamma_1,\gamma_2$ близки, то есть $\forall\,t\in[a,b]:\;|\gamma(t)-\gamma_1(t)|<\delta,|\gamma(t)-\gamma_2(t)|<\delta$, то $\gamma,\gamma_1,\gamma_2$ похожи.
+\end{Theorem*}
+
+\begin{Proof}
+	$\delta_k\coloneqq\operatorname{dist}()$
+\end{Proof}
+
+\newpage

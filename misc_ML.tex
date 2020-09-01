@@ -1,0 +1,116 @@
+\shapka{What we should know}
+
+Ослабили. \label{easy}
+$a$, то $b\to a$\\
+$a\to b\to a$\\
+$b\to a$
+
+\bigskip
+
+Транзитивность следствия
+$a\to b$, $b\to c$, то $a\to c$\\
+$(b\to c)\to a\to (b\to c)$\\
+$a\to (b\to c)$\\
+$(a\to b)\to(a\to b\to c)\to(a\to c)$\\
+$a\to c$
+
+\bigskip
+
+A1-pro $\forall\,a\forall\,b\forall\,c.a=b\to a=c \to b=c$\\
+$A=B'\to A=C \to B=C$
+
+\bigskip
+
+\hypertarget{conter}{Контрапозиция}
+$a\to b\equiv (\neg b\to\neg a)$
+\begin{itemize}
+	\item ($\Rightarrow$) $a\to b\to (\neg b\to\neg a)$
+	По т. о дедукции достаточно $a\to b,\neg b\vdash\neg a$\\
+	$a\to b$\\
+	$\neg b$\\
+	$a\to\neg b$ (\hyperref[easy]{ослабили})\\
+	$(a\to b)\to(a\to\neg b)\to\neg a$\\
+	$\neg a$
+	\item ($\Leftarrow$) $(\neg b\to\neg a)\to (a\to b)$
+	По т. о дедукции достаточно $\neg b\to\neg a, a, \vdash b$\\
+	$\neg b\to\neg a$\\
+	$a$\\
+	$\neg b\to a$ (\hyperref[easy]{ослабили})\\
+	$(\neg b\to a)\to (\neg b\to \neg a)\to \neg\neg b$\\
+	$\neg\neg b$\\
+	$\neg\neg b\to b$\\
+	$b$
+\end{itemize}
+
+\bigskip
+
+\hypertarget{impToOr}{Импликация == или}.
+
+$a\to b\equiv\neg a\vee b$
+\begin{itemize}
+	\item $\neg a\vee b\to (a\to b)$
+	По т. о дедукции достаточно $\neg a\vee b, a\vdash b$\\
+	$a$\\
+	$a\vdash b$\\
+	$a\to\neg a\to b$ (т. о дедукции+9акс)\\
+	$\neg a\to b$\\
+	$(\neg a\to b)\to(b\to b)\to(\neg a\vee b\to b)$\\
+	$\neg a\vee b\to b$
+	\item $(a\to b)\to(\neg a\vee b)$
+	По т. о дедукции достаточно $a\to b\vdash \neg a\vee b$\\
+	$a\to b$\\
+	$b\to \neg a\vee b$\\
+	$a\to\neg a\vee b$\\
+	$\neg a\to\neg a\vee b$\\
+	$(a\to\neg a\vee b)\to(\neg a\to\neg a\vee b)\to(a\vee\neg a\to (\neg a\vee b))$\\
+	$a\vee\neg a\to (\neg a\vee b)$\\
+	$a\vee\neg a$ ($\neg(a\vee\neg a)$ противоречива)\\
+	$\neg a\vee b$
+\end{itemize}
+
+\bigskip
+
+Про эквивалентность.
+\begin{itemize}
+	\item $a\equiv b\to \neg a\equiv\neg b$. Из~\hyperlink{conter}{контрапозиции} $\neg b \to \neg a$ и $\neg a \to \neg b$.
+	\item $b\to c$, то $a \wedge b\to a\wedge c$ (cool fact: if $a\to c$ this theorem right too)\\
+	$a\to c\to a\wedge c$\\
+	$a\wedge b\to(a\to c\to a\wedge c)$\\
+	$(a\wedge b\to a)\to (a\wedge b\to a\to[c\to a\wedge c])\to (a\wedge b\to [c\to a\wedge c])$\\
+	$a\wedge b\to c\to a\wedge c$\\
+	$a\wedge b\to c$\\
+	$(a\wedge b\to c)\to (a\wedge b\to c\to a\wedge c)\to (a\wedge b \to a\wedge c)$\\
+	$a\wedge b\to a\wedge c$
+	\item $a\to c$, то $a \vee b\to c\vee b$\\
+	$a\to c$\\
+	$c\to c\vee b$\\
+	$a\to c\vee b$\\
+	$b\to c\vee b$\\
+	$(a\to c\vee b)\to (b\to c\vee b)\to (a\vee b\to c\vee b)$\\
+	$a\vee b\to c\vee b$
+	\item Про импликацию 2 штуки. \begin{itemize}
+		\item $b\to a$, то $(a\to c)\to(b\to c)$\\
+		$(a\to c)\to[b\to (a\to c)]$\\
+		$(b\to a)\to (b\to a\to c)\to (b\to c)$\\
+		$b\to a$\\
+		$[b\to a\to c]\to (b\to c)$\\
+		$(a\to c)\to (b \to c)$
+		\item $b\to a$, то $(c\to a)\to(c\to b)$\\
+		$(c\to a\to b)\to(c\to a)\to(c\to b)$ (поменяли 2 посылки местами)\\
+		$a\to b$\\
+		$c\to a\to b$\\
+		$(c\to a)\to(c\to b)$
+	\end{itemize}
+	\item $a\to b$, то $\forall\,x.a\to\forall\,x.b$\\
+	$a\to b$\\
+	$\forall\,x.a\to a$\\
+	$\forall\,x.a\to b$\\
+	$\forall\,x.a\to\forall\,x.b$ (в 1 части $x$ уже не свободная)
+	\item $a\to b$, то $\exists\,x.a\to\exists\,x.b$\\
+	$a\to b$\\
+	$b\to\exists\,x.b$\\
+	$a\to\exists\,x.b$\\
+	$\exists\,x.a\to\exists\,x.b$ (во 2 части $x$ уже не свободная)
+\end{itemize}
+
+\newpage

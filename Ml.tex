@@ -1,0 +1,605 @@
+\documentclass[12pt]{article}
+\usepackage{MySty}
+
+
+\begin{document}
+
+\input{misc_ML.tex}
+\shapka{ML, Клепов Дмитрий}
+
+45d.1 $\neg \forall\,x.P\to\exists\,x.\neg P$\\
+По \hyperlink{conter}{контрапозиции} достаточно: $\neg\exists\,x.\neg P\to\neg\neg\forall\,x.P$\\
+Достаточно: $\neg\exists\,x.\neg P\to\forall\,x.P$ (тк $a\to\neg\neg a$ 9 акс)\\
+По т. о дедукции достаточно: $\neg\exists\,x.\neg P\vdash\forall\,x.P$\\
+$\neg\exists\,x.\neg P$\\
+$\neg P\to\neg\exists\,x.\neg P$ (ослабили)\\
+$\neg P\to\exists\,x.\neg P$\\
+$(\neg P\to\exists\,x.\neg P)\to(\neg P\to\neg\exists\,x.\neg P)\to\neg\neg P$\\
+$\neg\neg P$\\
+$P$\\
+$T\to P$\\
+$T\to\forall\,x.P$ (правило для кванторов по свободной переменной $x$ в $P$, в '$T$' ее нет, как и в гипотезе '$\neg\exists\,x.\neg P$')\\
+$\forall\,x.P$
+
+\bigskip
+
+45d.2 $((\exists\,x.P)\to(\forall\,x.Q))\to(\forall\,p.\forall\,q.P[x\coloneqq p]\to Q[x\coloneqq q])$\\
+
+\begin{tabular*}{\textwidth}{r l l}
+	$((\exists\,x.P)\to(\forall\,x.Q))\to$ &//$(a\to b)\to(\neg a\vee b)$ &/\\
+	$(\neg\exists\,x.P\vee\forall\,x.Q)\to$ &//$a\to b$, то $a\vee c\to b\vee c$; и $\neg\exists\,x.P\to\forall\,x.\neg P$&/\\
+	$(\forall\,x.\neg P\vee\forall\,x.Q)\to$ &//$q$ и $q$ новые&/\\
+	$(\forall\,p.\neg P[x\coloneqq p])\vee(\forall\,q.Q[x\coloneqq q])\to$ &//45b&/\\
+	$\forall\,p.\forall\,q.\neg P[x\coloneqq p]\vee Q[x\coloneqq q]\to$ &//$a\to b$, то $\forall\,x.a\to\forall\,x.b$; $(\neg a\vee b)\to(a\to b)$&/\\
+	$\forall\,p.\forall\,q.P[x\coloneqq p]\to Q[x\coloneqq q]$ &&
+\end{tabular*}
+
+\bigskip
+
+{\bf \hypertarget{lemma1}{Лемма 1}}
+
+$\neg a\to a\to b$:
+По т. о дедукции достаточно: $a,\neg a\vdash b$\\
+$(\neg b\to a)\to(\neg b\to\neg a)\to\neg\neg b$\\
+$\neg\neg b$\\
+$b$
+
+\bigskip
+
+{\bf \hypertarget{lemma2}{Лемма 2}}
+
+$a\vee b,\neg a\vdash b$:\\
+$\neg a\to a\to b$ //По \hyperlink{lemma1}{лемме 1}/\\
+$a\to b$\\
+$b\to b$\\
+$(a\to b)\to(b\to b)\to(a\vee b\to b)$\\
+$a\vee b\to b$\\
+$b$
+
+\bigskip
+
+46a $(\forall\,x.a\vee b)\to a\vee(\forall\,x.b)$\\
+По контрапозиции достаточно: $\neg(a\vee\forall\,x.b)\to\neg(\forall\,x.a\vee b)$\\
+Достаточно: $(\neg a\wedge\exists\,x.\neg b)\to \neg(\forall\,x.a\vee b)$\\
+По т. о дедукции достаточно: $\neg a\wedge\exists\,x.\neg b\vdash\neg(\forall\,x.a\vee b)$\\
+$\neg a\wedge\exists\,x.\neg b$\\
+$\neg a$\\
+$\exists\,x.\neg b$\\
+$T\to\neg a$\\
+$T\to\forall\,x.\neg a$\\
+$\forall\,x.\neg a$\\
+* $\forall\,x.(a\vee b)$ //Предположим, получим противоречие (9акс+т. о дедукции)/\\
+* $a\vee b$\\
+* $b$ //По \hyperlink{lemma2}{лемме 2}/\\
+* $T\to b$\\
+* $T\to\forall\,x.b$ // Правило для $x$, ее нет в '$T$', как и в гипотезе '$\neg a\wedge\exists\,x.\neg b$' --- тут и пользуемся, что $a$ не зависит от $x$\\
+* $\forall\,x.b$\\
+* $\neg\exists\,x.\neg b$ //Получили/\\
+$\neg\forall\,x.(a\vee b)$
+
+\bigskip
+
+46c $\forall\,x.(P\wedge Q)\to (\forall\,x.P)\wedge(\forall\,x.Q)$\\
+По т. о дедукции достаточно: $\forall\,x.(P\wedge Q)\vdash (\forall\,x.P)\wedge(\forall\,x.Q)$\\
+$\forall\,x.P\wedge Q$\\
+$P\wedge Q$\\
+$P$\\
+$Q$\\
+$T\to P$\\
+$T\to Q$\\
+$T\to \forall\,x.P$\\
+$T\to \forall\,x.Q$\\
+$\forall\,x.P$\\
+$\forall\,x.Q$\\
+$\forall\,x.P\to\forall\,x.Q\to(\forall\,x.P)\wedge(\forall\,x.Q)$\\
+$(\forall\,x.P)\wedge(\forall\,x.Q)$
+
+\bigskip
+
+46d.1 $\forall\,x.\neg P\to\neg\exists\,x.P$\\
+По т. о дедукции достаточно: $\forall\,x.\neg P\vdash\neg\exists\,x.P$\\
+$\forall\,x.\neg P$\\
+$\neg P$\\
+$T\to \neg P$ //ослабили (нет)/\\
+$\neg\neg P\to\neg T$ //контрапозиция/\\
+$P\to\neg T$ //$P\to\neg\neg P$/\\
+$\exists\,x.P\to\neg T$ //Правило для квантора по свободной переменной $x$ в $P$, в '$T$' ее нет, как и в гипотезе '$\forall\,x.\neg P$'/\\
+$\neg\neg T\to\neg\exists\,x.P$ //контрапозиция/\\
+$T\to\neg\exists\,x.P$ //$T\to\neg\neg T$/\\
+$\neg\exists\,x.P$
+
+\bigskip
+
+46d.2 $(\forall\,p.\forall\,q.P[x\coloneqq p]\to Q[x\coloneqq q])\to((\exists\,x.P)\to(\forall\,x.Q))$\\
+\begin{tabular*}{\textwidth}{r l l}
+	$\forall\,p.\forall\,q.(P[x\coloneqq p]\to Q[x\coloneqq q])\to$&//$(a\to b)\to(\neg a\vee b)$&/\\
+	$\forall\,p.\forall\,q.(\neg P[x\coloneqq p]\vee Q[x\coloneqq q])\to$&//46b&/\\
+	$(\forall\,x.\neg P[x\coloneq p][p\coloneqq x])\vee(\forall\,x.Q[x\coloneq q][q\coloneqq x])\to$&//$P[x\coloneqq p][p\coloneqq x]==P$ как строки даже&/\\
+	$(\forall\,x.\neg P)\vee(\forall\,x.Q)\to$&//$a\vee b\to (\neg a\to b)$&/\\
+	$(\neg\forall\,x.\neg P)\to(\forall\,x.Q)\to$&//$(\exists\,x.\neg\neg P)\to(\neg\forall\,x.\neg P)$&/\\
+	$(\exists\,x.\neg\neg P)\to(\forall\,x.Q)\to$&//$(\exists\,x.P)\to\exists\,x.\neg\neg P$&/\\
+	$(\exists\,x.P)\to(\forall\,x.Q)$
+\end{tabular*}
+
+\bigskip
+
+% 45d.1 $\neg \forall\,x.P\to\exists\,x.\neg P$\\
+% 46d.1 $\forall\,x.\neg P\to\neg\exists\,x.P$\\
+47.1 Внутрь: $\neg\exists\,x.P\to\forall\,x.\neg P$\\
+По контрапозиции достаточно: $\neg\forall\,x.\neg P\to\neg\neg\exists\,x.P$\\
+Достаточно: $\neg\forall\,x.\neg P\to\exists\,x.P$ //$a\to\neg\neg a$/\\
+$\neg\forall\,x.\neg P\to\exists\,x.\neg\neg P$ //По 45d.1, для $P\coloneqq\neg P$/\\
+$\exists\,x.\neg\neg P\to\exists\,x.P$ //$\neg\neg P\to P$/\\
+$\neg\forall\,x.\neg P\to\exists\,x.P$
+
+47.1 Наружу: $\exists\,x.\neg P\to\neg\forall\,x.P$\\
+По контрапозиции достаточно: $\neg\neg\forall\,x.P\to\neg\exists\,x.\neg P$\\
+Достаточно: $\forall\,x.P\to\neg\exists\,x.\neg P$ //$\neg\neg a\to a$/\\
+$\forall\,x.\neg\neg P\to\neg\exists\,x.\neg P$ //По 46d.1, для $P\coloneqq\neg P$/\\
+$\forall\,x.P\to\forall\,x.\neg\neg P$\\
+$\forall\,x.P\to\neg\exists\,x.\neg P$
+
+47.2 Внутрь: $(\exists\,x.P\vee Q)\to(\exists\,x.P)\vee(\exists\,x.Q)$\\
+По контрапозиции достаточно: $\neg((\exists\,x.P)\vee(\exists\,x.Q))\to\neg(\exists\,x.P\vee Q)$\\
+\begin{tabular*}{\textwidth}{r l l}
+	$\neg((\exists\,x.P)\vee(\exists\,x.Q))\to$&//$\neg(a\vee b)\to(\neg a\wedge\neg b)$&/\\
+	$\neg(\exists\,x.P)\wedge\neg(\exists\,x.Q)\to$&//$(\neg\exists\,x.a)\to\forall\,x.\neg a$; и если $a\to b$, то $a\wedge c\to b\wedge c$&/\\
+	$(\forall\,x.\neg P)\wedge(\forall\,x.\neg Q)\to$&//По 45с&/\\
+	$\forall\,x.(\neg P\wedge\neg Q)\to$&//$(\neg a\wedge\neg b)\to\neg(a\vee b)$; и если $a\to b$, то $(\forall\,x.a)\to(\forall\,x.b)$&/\\
+	$\forall\,x.\neg(P\vee Q)\to$&//$(\forall\,x.\neg a)\to\neg\exists\,x.a$&/\\
+	$\neg(\exists\,x.P\vee Q)$
+\end{tabular*}
+47.2 Наружу: $(\exists\,x.P)\vee(\exists\,x.Q)\to(\exists\,x.P\vee Q)$\\
+По контрапозиции достаточно: $\neg(\exists\,x.P\vee Q)\to\neg((\exists\,x.P)\vee(\exists\,x.Q))$\\
+\begin{tabular*}{\textwidth}{r l l}
+	$\neg(\exists\,x.P\vee Q)\to$&//$(\neg\exists\,x.a)\to(\forall\,x.\neg a)$&/\\
+	$\forall\,x.\neg(P\vee Q)\to$&//если $a\to b$, то $(\forall\,x.a)\to(\forall\,x.b)$; и $\neg(a\vee b)\to (\neg a\wedge\neg b)$&/\\
+	$\forall\,x.\neg P\wedge\neg Q\to$&6c, $P\coloneqq\neg P, Q\coloneqq\neg Q$&\\
+	$(\forall\,x.\neg P)\wedge(\forall\,x.\neg Q)\to$&//$a\wedge b\to\neg(\neg a\vee\neg b)$&/\\
+	$\neg(\neg(\forall\,x.\neg P)\vee\neg(\forall\,x.\neg Q))\to$&//$(\exists\,x.\neg a)\to(\neg\forall\,x.a)$; и если $b\to a$, то $\neg(a\vee c)\to\neg(b\vee c)$&/\\
+	$\neg((\exists\,x.\neg\neg P)\vee(\exists\,x.\neg\neg Q))\to$&//$P\to\neg\neg P$ и причины выше&/\\
+	$\neg((\exists\,x.P)\vee(\exists\,x.Q))$
+\end{tabular*}
+47.3 Наружу: $(\exists\,x.P)\wedge(\exists\,y.Q)\to(\exists\,p.\exists\,q.P[x\coloneqq p]\wedge Q[y\coloneqq q])$\\
+По контрапозиции достаточно: $\neg(\exists\,p.\exists\,q.P[x\coloneqq p]\wedge Q[y\coloneqq q])\to\neg((\exists\,x.P)\wedge(\exists\,y.Q))$\\
+\begin{tabular*}{\textwidth}{r l l}
+	$\neg(\exists\,p.\exists\,q.P[x\coloneqq p]\wedge Q[y\coloneqq q])\to$&//$\neg\exists\,p.a\to\forall\,p.\neg a$&/\\
+	$\forall\,p.\neg \exists\,q.(P[x\coloneqq p]\wedge Q[y\coloneqq q])\to$&//Аналогично&/\\
+	$\forall\,p.\forall\,q.\neg(P[x\coloneqq p]\wedge Q[y\coloneqq q])\to$&//$\neg(a\wedge b)\to\neg a\vee\neg b$&/\\
+	$\forall\,p.\forall\,q.\neg(P[x\coloneqq p])\vee\neg(Q[y\coloneqq q])\to$&//46b, где $\alpha\coloneqq(\neg P[x\coloneqq p]), \beta\ldots$&/\\
+	$(\forall\,x.(\neg(P[x\coloneqq p]))[p\coloneqq x])\vee(\forall\,y.(\neg(Q[y\coloneqq q]))[q\coloneqq y])\to$&//$(\neg(a[x\coloneqq p]))[p\coloneqq x]=\neg P$&/\\
+	$(\forall\,x.\neg P)\vee(\forall\,y.\neg Q)\to$&//$a\vee b\to\neg(\neg a\wedge\neg b)$&/\\
+	$\neg(\neg(\forall\,x.\neg P)\wedge\neg(\forall\,y.\neg Q))\to$&//$(\exists\,x.P)\to(\neg\forall\,x.\neg P)$&/\\
+	$\neg((\exists\,x.P)\wedge(\exists\,y.Q))$&&\\
+\end{tabular*}
+47.3 Внутрь: $(\exists\,p.\exists\,q.P[x\coloneqq p]\wedge Q[y\coloneqq q])\to(\exists\,x.P)\wedge(\exists\,y.Q)$\\
+По контрапозиции достаточно: $\neg((\exists\,x.P)\wedge(\exists\,y.Q))\to\neg(\exists\,p.\exists\,q.P[x\coloneqq p]\wedge Q[y\coloneqq q])$\\
+\begin{tabular*}{\textwidth}{r l l}
+	$\neg((\exists\,x.P)\wedge(\exists\,y.Q))\to$&//&/\\
+	$\neg(\exists\,x.P)\vee\neg(\exists\,y.Q)\to$&//&/\\
+	$(\forall\,x.\neg P)\vee(\forall\,y.\neg Q)\to$&//По 45b&/\\
+	$\forall\,p.\forall\,q.(\neg P)[x\coloneqq p]\vee(\neg Q)[y\coloneqq q]\to$&//$(\neg P)[x\coloneqq p]$ и $\neg (P[x\coloneqq p])$ равны как строки&/\\
+	$\forall\,p.\forall\,q.\neg (P[x\coloneqq p])\vee\neg(Q[y\coloneqq q])\to$&//&/\\
+	$\forall\,p.\forall\,q.\neg(P[x\coloneqq p]\wedge Q[y\coloneqq q])\to$&//&/\\
+	$\forall\,p.\neg\exists\,q.(P[x\coloneqq p]\wedge Q[y\coloneqq q])\to$&//&/\\
+	$\neg\exists\,p.\exists\,q.(P[x\coloneqq p]\wedge Q[y\coloneqq q])\to$&//&/
+\end{tabular*}
+47.4 Наружу: $((\forall\,x.P)\to(\exists\,x.Q))\to(\exists\,x.P\to Q)$\\
+По контрапозиции достаточно: $\neg(\exists\,x.P\to Q)\to\neg((\forall\,x.P)\to(\exists\,x.Q))$\\
+\begin{tabular*}{\textwidth}{r l l}
+	$\neg(\exists\,x.P\to Q)\to$&//$(\neg a\vee b)\to(a\to b)$&/\\
+	$\neg(\exists\,x.\neg P\vee Q)\to$&//&/\\
+	$\forall\,x.\neg(\neg P\vee Q)\to$&//$\neg(a\vee b)\to(\neg a\wedge\neg b)$&/\\
+	$\forall\,x.\neg\neg P\wedge \neg Q\to$&//$\neg\neg a\to a$&/\\
+	$\forall\,x.P\wedge \neg Q\to$&//По 46c&/\\
+	$(\forall\,x.P)\wedge (\forall\,x.\neg Q)\to$&//&/\\
+	$(\forall\,x.P)\wedge\neg(\exists\,x.Q)\to$&//$(a\wedge b)\to\neg(\neg a\vee\neg b)$&/\\
+	$\neg(\neg(\forall\,x.P)\vee\neg\neg(\exists\,x.Q))\to$&//$a\to\neg\neg a$&/\\
+	$\neg(\neg(\forall\,x.P)\vee(\exists\,x.Q))\to$&//$(a\to b)\to(\neg a\vee b)$&/\\
+	$\neg((\forall\,x.P)\to(\exists\,x.Q))\to$&//&/\\
+\end{tabular*}
+47.5 Внутрь: $(\exists\,x.P\to Q)\to((\forall\,x.P)\to(\exists\,x.Q))$\\
+По контрапозиции достаточно: $\neg((\forall\,x.P)\to(\exists\,x.Q))\to\neg(\exists\,x.P\to Q)$\\
+\begin{tabular*}{\textwidth}{r l l}
+	$\neg((\forall\,x.P)\to(\exists\,x.Q))\to$&//$(\neg a\vee b)\to(a\to b)$&/\\
+	$\neg(\neg(\forall\,x.P)\vee(\exists\,x.Q))\to$&//$\neg(a\vee b)\to(\neg a\wedge\neg b)$&/\\
+	$\neg\neg(\forall\,x.P)\wedge\neg(\exists\,x.Q)\to$&//$\neg\neg a\to a$&/\\
+	$(\forall\,x.P)\wedge\neg(\exists\,x.Q)\to$&//$(\neg\exists\,x.a)\to(\forall\,x.\neg a)$&/\\
+	$(\forall\,x.P)\wedge(\forall\,x.\neg Q)\to$&//По 45с&/\\
+	$\forall\,x.(P\wedge\neg Q)\to$&//&/\\
+	$\forall\,x.\neg(\neg P\vee Q)\to$&//&/\\
+	$\forall\,x.\neg(P\to Q)\to$&//&/\\
+	$\neg\exists\,x.(P\to Q)$&//&/\\
+\end{tabular*}
+
+\newpage
+
+A1.pro $(\forall\,a.\forall\,b.\forall\,c.a=b\to a=c\to\to b=c)$
+$(x=y\to x=z\to\to y=z)$, $x,y,z$ уже не только числа.
+
+54b $(\exists\,x.a+x=b)\to(\exists\,x.a'+x=b')$.
+Докажем $a+x=b\to a'+x=b'$. По т. о дедукции достаточно $a+x=b\vdash a'+x=b'$\\
+$a+x=b$\\
+$a+x=x+a$\\
+$a+x=x+a\to a+x=b\to x+a=b$\\
+$x+a=b$\\
+$x+a=b\to(x+a)'=b'$\\
+$(x+a)'=b'$\\
+$(x+a)'=x+a'$\\
+$(x+a)'=x+a'\to(x+a)'=b'\to x+a'=b'$\\
+Правил для кванторов не было (кроме легальных для A1.pro), поэтому теоремой можно пользоваться.
+
+Далее план такой:
+$(a\to b)\to((\exists\,x.a)\to b)\to((\exists\,x.a)\to(\exists\,x.b))$. (второе понятно, ибо $b\to\exists\,x.b$)
+Докажем первое. $(a\to b)\to((\exists\,x.a)\to b)$.
+По т. о дедукции достаточно: $a\to b, \exists\,x.a\vdash b$\\
+$a\to b$\\
+$\exists\,x.a$\\
+* $\neg b$ //Предположим, получим противоречие (9акс+т. о дедукции)/\\
+* $\neg b\to\neg a$\\
+* $\neg a$\\
+* $\forall\,x.\neg a$\\
+* $\neg\exists\,x.a$//(Получили)/\\
+$b$\\
+
+$(a\to b)\to((\exists\,x.a)\to(\exists\,x.b))$\\
+По т. о дедукции достаточно $a\vee b,(\exists\,x.a)\wedge(\exists\,x.b)$\\
+$a\to b$\\
+$\exists\,x.a$\\
+$(a\to b)\to(\neg b\to \neg a)$ //Контрапозиция/\\
+$\neg b\to \neg a$\\
+* $\neg b$ //Предположим, получим противоречие (9акс+т. о дедукции)/\\
+* $\neg a$
+* $\forall\,x.\neg a$\\
+* $\neg\exists\,x.\neg\neg a$\\
+* $\neg\exists\,x.a$ //Получили/\\
+$b$\\
+$b\to(\exists\,x.b)$\\
+$\exists\,x.b$\\
+
+\hypertarget{cases}{{\bf Разбор случаев}}
+
+Если $\Gamma,a\vdash b$, и $\Gamma,\neg a\vdash b$, то $\Gamma\vdash b$\\
+По теореме о дедукции нам уже доказали $a\to b$ и $\neg a\to b$\\
+$a\to b$\\
+$\neg a\to b$\\
+$(a\to b)\to(\neg a\to b)\to(a\vee\neg a\to b)$\\
+$a\vee\neg a\to b$//$a\vee\neg a$ уже умеем выводить (№21a)/\\
+$b$
+
+54d. $(\exists\,x.a+x=b)\vee(\exists\,x.b+x=a)$\\
+$P(a)\coloneqq(\exists\,x.a+x=b)\vee(\exists\,x.b+x=a)$\\
+$P(0)\coloneqq(\exists\,x.0+x=b)\vee(\exists\,x.b+x=0)$\\
+Докажем $P(0)$.\\
+//$\phi\coloneqq 0+x=b$, тогда $\phi[x\coloneqq b]=0+b=b$//\\
+$0+b=b\to\exists\,x.0+x=b$\\
+$0+b=b$\\
+$\exists\,x.0+x=b$\\
+$\exists\,x.0+x=b\to(\exists\,x.0+x=b)\vee(\exists\,x.b+0=0)$\\
+$(\exists\,x.0+x=b)\vee(\exists\,x.b+0=0)$
+
+Далее докажем $\Phi\coloneqq((\exists\,x.a+x=b)\vee(\exists\,x.b+x=a))\to((\exists\,x.a'+x=b)\vee(\exists\,x.b+x=a'))$\\
+По т. о дедукции достаточно: $(\exists\,x.a+x=b)\vee(\exists\,x.b+x=a)\vdash (\exists\,x.a'+x=b)\vee(\exists\,x.b+x=a')$\\
+* $b+x=a$ //Разберем 2 \hyperlink{cases}{случая}, выведем $\exists\,x.b+x=a'$, тогда $(\ldots\vee\ldots), b+x=a\vdash (\exists\,x.a'+x=b)\vee(\exists\,x.b+x=a')$, ведь $a\to\exists\,x.a$ и вынесем квантор из ИЛИ по 7 номеру/\\
+* $(b+x)'=a'$\\
+* $(b+x)'=b+x'$\\
+* $b+x'=a'$\\
+* $\exists\,x.b+x=a'$ //$\phi=b+q=a'$, $\phi[q\coloneqq x']=b+x'=a'$\\
+* $b+x'=a'\to\exists\,x.b+x=a'$ // Доказали, теперь предположим $\neg b+x=a$\\
+\\
+* $\neg b+x=a$
+* $(\exists\,x.a+x=b)\vee(\exists\,x.b+x=a)$\\
+* $\neg a+x=b\to b+x=a$//\hyperlink{impToOr}{Уже знаем}/\\
+* $b+x=a$\\
+* $q$
+
+\newpage
+
+\hypertarget{tratsit_stories}{{\bf Истории про транзитивность}}
+$a+x=n,x=p'\vdash a+p'=n$ (квантор существования навесим, если нужно)\\
+$a+x=n$\\
+$p'=x$\\
+$p'+a=x+a$ //53с\\
+$p'+a=a+p'$ //Коммутативность сложения/\\
+$x+a=a+p'$\\
+$a+x=x+a$\\
+$x+a=n$\\
+$a+p'=n$
+
+\bigskip
+
+\hypertarget{tratsit_ineq}{{\bf Транзитивность неравенства}}
+$(\exists\,x.a+x=b)\to (\exists\,x.a+x=b')$\\
+Докажем: $\vdash (a\to b)\to ((\exists\,x.a)\to(\exists\,x.b))$ через посредника $a\to(\exists\,y.b[x\coloneqq y])$//$y$ новая\\
+Первое следствие.\\
+$b\to\exists\,y.b[x\coloneqq y]$\\
+$(a\to b)\to (a\to\exists\,y.b[x\coloneqq y])$//Заменили на следствие в дизъюнкции/\\
+Второе следствие.\\
+$(a\to\exists\,y.b[x\coloneqq y])\to\exists\,x.a\to(\exists\,y.b[x\coloneqq y])$//12 акс, в следствии нет $x$ как свободной переменной/\\
+$(\exists\,x.a\to(\exists\,y.b[x\coloneqq y]))\to((\exists\,x.a)\to(\exists\,x.b))$//Вынесем следствие, так как не зависит, и переименуем переменную в кванторе
+
+
+\newpage
+
+54e. $a\leqslant b\to a=0\vee a=1\vee\ldots\vee a=n$\\
+По индукции по $n$ покажем, что умеем доказывать утверждение задачи.
+
+{\bf База} (умеем доказывать формулу для $n=0$): $a\leqslant 0\to a=0$\\
+Достаточно: $a+x=0\to a=0$. Потом навесим ($\exists\,x.$) на посылку, ведь в ``$a=0$'' нет переменной $x$.\\
+По т. о дедукции достаточно: $a+x=0\vdash a=0$\\
+\begin{tabular*}{\textwidth}{l l l}
+	$a+x=0$&&\\
+	* $\neg (a=0)$ &//Предположим, получим противоречие&/\\
+	* $\exists\,p.p'=a$&//Следствие из Леммы Глеба, но у нас еще предположение про $a\neq0$&/\\
+	* $\exists\,p.p'+x=0$&//\hyperlink{tratsit_stories}{Истории про транзитивность}&/\\ %+лемма про замену под квантором
+	* $\exists\,p.p+x'=0$&//Лемма о перекидывании штриха&/\\ %+лемма про замену под квантором
+	* $\exists\,p.(p+x)'=0$&//Аксиома про сложение+транзитивность&/\\ %+лемма про замену под квантором
+	* $\neg\forall\,p.\neg(p+x)'=0$&//Пробросили отрицание через квантор&/\\
+	* $\neg(p+x)'=0$&//Мы уже умеем подставлять в аксиомы что угодно&/\\ %но в аксиоме новую переменную
+	* $\forall\,p.\neg(p+x)'=0$&//Тоже умеем ($p$ нет в гипотезе)&/\\
+	$a=0$&//Получили противоречие&/
+\end{tabular*}
+
+{\bf Переход}. Научимся доказывать формулу для $n$.\\
+Достаточно $a+x=n\to a=0\vee\ldots\vee a=n$. Квантор навесим как в базе.\\
+По т. о дедукции достаточно: $a+x=n\vdash a=0\vee\ldots\vee a=n$\\
+\begin{tabular*}{\textwidth}{l l l}
+	$a+x=n$&&\\
+	1* $x=0$&//Если $\Gamma,\alpha\vdash\beta$ и $\Gamma,\neg\alpha\vdash\beta$, то $\Gamma\vdash\beta$&/\\
+	1* $a+0=n$&//\hyperlink{tratsit_stories}{Истории про транзитивность}&/\\
+	1* $a=n$&//Транзитивность&/\\
+	1* $a=0\vee\ldots\vee a=n$&//$n$ раз $7$-ую акс&/\\
+	2* $\neg x=0$&//9 акс+т. о дедукции&/\\
+	2* $\exists\,p.p'=x$&//Следствие из Леммы Глеба&/\\
+	2* $\exists\,p.a+p'=n$&//\hyperlink{tratsit_stories}{Истории про транзитивность}&/\\
+	2* $\exists\,p.(a+p)'=(n-1)'$&//Определение $n$ + аксиома про ``$+$'' + транз.&/\\
+	2* $\exists\,p.a+p=n-1$&&\\
+	2* $a\leqslant n-1$&//Определение&/\\
+	2* $a\leqslant n-1\to a=0\vee\ldots\vee a=n-1$&//По предположению умеем выводить&/\\
+	2* $a=0\vee\ldots\vee a=n-1$&&\\
+	2* $a=0\vee\ldots\vee a=n-1\vee a=n$&//$6$ акс&/\\
+	$a=0\vee\ldots\vee a=n-1\vee a=n$
+\end{tabular*}
+
+\bigskip
+
+54f. $a=0\vee a=1\vee\ldots\vee a=n\to a\leqslant b$\\
+По индукции по $n$ покажем, что умеем доказывать утверждение задачи.
+
+{\bf База} (умеем выводить $a=0\to a\leqslant 0$)\\
+Это 54a.
+
+{\bf Переход}. Научимся доказывать формулу для $n$.\\
+По т. о дедукции достаточно: $a=0\vee a=1\vee\ldots\vee a=n\vdash\exists\,p.a+p=n$\\
+\begin{tabular*}{\textwidth}{l l l}
+	$a=0\vee a=1\vee\ldots\vee a=n$&&\\
+	1* $a=n$&//Если $\Gamma,\alpha\vdash\beta$ и $\Gamma,\neg\alpha\vdash\beta$, то $\Gamma\vdash\beta$&/\\
+	1* $a\leqslant n$&//54a&/\\
+	2* $\neg a=n$&//9 акс+т. о дедукции&/\\
+	2* $a=0\vee a=1\vee\ldots\vee a=n-1$&//$a\vee b,\neg b\vdash a$. $a\coloneqq \phi_{n-1}$&/\\
+	2* $a=0\vee a=1\vee\ldots\vee a=n-1\to a\leqslant n-1$&//По предположению умеем выводить&/\\
+	2* $a\leqslant n-1$&&\\
+	2* $a\leqslant n-1\to a\leqslant n$&//транзитивность неравенства&/\\
+	2* $a\leqslant n$&&\\
+	$a\leqslant n$
+\end{tabular*}
+
+\bigskip
+
+65b. Из выразимости $C_f$ следует представимость $f$.
+
+Пусть $C_f$ выразимо. Тогда есть формула $\beta(X,y)$, удовлетворяющая условиям:
+
+$\left\{\begin{array}{l l}
+	\vdash\beta(X,y), & X,y\in C_f\\
+	\vdash\neg\beta(X,y), & X,y\notin C_f
+\end{array}\right.$
+
+Тогда выполнено $\vdash\beta(X,f(X))$ и $y\neq f(X)\vdash\neg\beta(X,y)$ по построению.
+
+Тогда в качестве $\alpha(X,y)$ выберем $\beta$. Докажем, что подойдет.
+\begin{itemize}
+	\item $f(X)=y\rightarrow\vdash\alpha(X,y)$ и $f(X)\neq y\rightarrow\vdash\neg\alpha(X,y)$\\
+	$f(X)=y\rightarrow (X,y)\in C_f\rightarrow\vdash\beta(X,y)\rightarrow\alpha(X,y)$; второе аналогично
+	\item $\vdash\alpha(X,f(X))$\\
+	$\vdash\alpha(X,f(X))\to\exists\,y.\alpha(X,y)$\\
+	$\exists\,y.\alpha(X,y)$
+	\item $\forall\,a.\forall\,b.\alpha(X,a)\wedge\alpha(X,b)\to a=b$\\
+	Достаточно: $\alpha(X,y)\to f(X)=y$ (дальше по транзитивности)\\
+	$f(X)\neq y\to\neg\beta(X,y)$ //По построению + т. о дедукции/\\
+	$\neg\neg\beta(X,y)\to\neg f(X)\neq y$ //Контрапозиция/\\
+	$\beta(X,y)\to f(X)=y$ //По 63/\\
+\end{itemize}
+
+\bigskip
+
+\newcommand{\getmin}{\mathop{\mathrm{min}}} % (pred) -> min{t | pred(t)}
+\newcommand{\verify}{\mathop{\mathrm{verify}}} % is T valid ?
+\newcommand{\geti}{\mathop{\mathrm{get}}} % (T, i) -> (T.second div T.first^i) mod T.first
+\newcommand{\ans}{\mathop{\texttt{ans}}}
+\newcommand{\second}{\mathop{\mathrm{second}}} %
+\newcommand{\first}{\mathop{\mathrm{first}}} %
+\newcommand{\intdiv}{\mathop{\mathrm{div}}} %
+\newcommand{\intmod}{\mathop{\mathrm{mod}}} %
+\newcommand{\makepair}{\mathop{\mathrm{makepair}}} %
+
+
+68. План. Цель --- найти факториал с помощью представимых функций.
+
+$T\coloneqq\langle x, P\rangle$, где $P=y_0+x y_0+\ldots+x^n y_n$.
+
+Назовем число $T$ подходящим, если $y_k=k!$ для всех $k\in[0..n]$.
+Если мы нашли подходящее $T$, то $f(n)=y\leftrightarrow y=\geti(T, n)$.
+
+$\geti(T,n)$ --- функция, возвращающая сохраненное $y_n$.
+
+Если мы нашли такое минимальное $T$, то уже хорошо --- нашли $n!$.
+
+Начнем придумывать функцию.
+
+\begin{tabular*}{\textwidth}{l l r}
+	$y=\getmin(\verify)$&//$\ans=\min\{T \mid T\text{ is OK}\}$. Байки про $x$&/\\
+	\multicolumn{2}{l}{$\verify(T)\coloneqq (\geti(T, 0)=1)\wedge (\forall\,i.i\leqslant n\to (\geti(T,i+1)=(i+1)\cdot\geti(T, i)))$}&/\\
+	$\geti(T,i)\coloneqq \second(T)\intdiv(\first(T)^i)\intmod\first(T)$&//$x=T.\first$, далее по $i$, берем одночлен&/\\
+	$\first(T)=\getmin(i \mapsto \exists\,j.\makepair(i,j)=T)$&&\\
+	$\second(T)=\getmin(j \mapsto \exists\,i.\makepair(i,j)=T)$&&\\
+	$\makepair(i,j)\coloneqq j+(i+j)(i+j+1)/2$&&\\
+\end{tabular*}
+
+Получилось что-то такое: $\ans=\min\{T\mid (T.y_0=1)\wedge(T.y_{i+1}=(i+1)\cdot T.y_i)\}$
+\\
+Теперь почему все они представимы.
+\begin{itemize}
+	\item Мы представляем функции через композицию представимых. Докажем, что композиция $h=g(f_1(X),\ldots,f_k(X))$ представима: $\exists\,Z.g(Z)\wedge f_1(X,Z_1)\wedge\ldots\wedge f_k(X, Z_k)$
+	\item Многие формулы выглядят как $a\wedge b$. Понятно, что $\neg a\vdash\neg(a\wedge b)$.
+	\item Равенство, нестрогое неравенство, сложение, умножение и деление нацело (и остаток) представимы.
+	\item $\makepair$ представима как арифметическое выражение (делим только на $2$).
+	\item $\getmin(p)$: $p(y)\wedge\forall\,z.z\leqslant y\to \neg p(z)$
+	\item $\first(T)$, $\second(T)$ как композиции представимых. Предикаты, которые даем функции $\makepair$, тоже представимы, ведь мы всего навесили квантор.
+	\item $\geti$: арифметические операции + получение $\first$ и $\second$.
+	\item $\verify$: как композиции представимых. (навесить предикат, взять логический оператор тоже можно)
+\end{itemize}
+
+В каком-то смысле мы перебираем все "output-ы" при шифровании последовательности из $n$ чисел, удовлетворяющей условиям, расшифровываем, берем первую такую (а она найдется) и возвращаем ее $n$-ый член.
+
+\bigskip
+
+81a Выразимость $R$ влечет представимость $C_R$.
+
+Пусть $R$ выразима с помощью $\alpha$. Тогда выберем формулу $\beta(X,y)\equiv\alpha(X)\wedge y=1\vee\neg\alpha(X)\wedge y=0$. Покажем, что с помощью нее можно представить $C_R$.
+\begin{itemize}
+	\item Покажем, что $C_R(X)=y\leftrightarrow\vdash\beta(X,y)$.
+	\begin{itemize}
+		\item $C_R(X)=0$, $y=0$. Тогда $\vdash\neg\alpha(X)$ и $\beta=\alpha(X)\wedge0=1\vee\neg\alpha(X)\wedge0=0$.
+		
+		$0=0$\\
+		$\neg\alpha(X)$\\
+		$\neg\alpha(X)\wedge 0=0$\\
+		$\alpha(X)\wedge0=1\vee\neg\alpha(X)\wedge0=0$\\
+		\item $C_R(X)=0$, $y=1$. Тогда $\vdash\neg\alpha(X)$ и $\beta=\alpha(X)\wedge1=1\vee\neg\alpha(X)\wedge1=0$.
+		
+		Докажем отрицание к $\beta(X,y)$ (а именно $\neg\alpha(X)\vee\neg1=1\wedge\neg\neg\alpha(X)\vee\neg1=0$), тогда будет недоказуема $\beta(X,y)$:
+		
+		$\neg\alpha(X)$\\
+		$\neg\alpha(X)\vee\neg1=1$\\
+		$\neg0'=0$\\
+		$\neg0'=0\vee\neg\neg\alpha(X)$\\
+		$\neg\alpha(X)\vee\neg1=1\wedge\neg\neg\alpha(X)\vee\neg1=0$\\
+		\item $C_R(X)=1$, $y=0$. Тогда $\vdash\alpha(X)$ и $\beta=\alpha(X)\wedge0=1\vee\neg\alpha(X)\wedge0=0$.
+		
+		Докажем отрицание к $\beta(X,y)$ (а именно $\neg\alpha(X)\vee\neg0=1\wedge\neg\neg\alpha(X)\vee\neg0=0$), тогда будет недоказуема $\beta(X,y)$:
+		
+		$\neg0=0'$ //По контрапозиции $(0=0'\to0'=0)\to(\neg0'=0\to\neg0=0')$/\\
+		$\neg\alpha(X)\vee\neg0=0'$\\
+		$\alpha(X)$\\
+		$\neg\neg\alpha(X)$\\
+		$\neg\neg\alpha(X)\vee\neg0=0$\\
+		$\neg\alpha(X)\vee\neg0=1\wedge\neg\neg\alpha(X)\vee\neg0=0$
+		\item $C_R(X)=1$, $y=1$. Тогда $\vdash\alpha(X)$ и $\beta=\alpha(X)\wedge1=1\vee\neg\alpha(X)\wedge1=0$.
+		
+		$\alpha(X)$\\
+		$1=1$ //С лекции умеем/\\
+		$\alpha(X)\wedge1=1$\\
+		$\alpha(X)\wedge1=1\vee\neg\alpha(X)\wedge1=0$
+	\end{itemize}
+	\item $\exists\,y.\alpha(X)\wedge y=1\vee\neg\alpha(X)\wedge y=0$. Разберем два случая: $\vdash\alpha(X)$ и $\vdash\neg\alpha(X)$. $X$ фиксирован, значит $\alpha(X)$ не имеет свободных переменных, поэтому вывод того, что можно разбирать случаи, будет как раньше. % По жизни не очень понятно, почему это верно, но в нашем случае это так, ведь либо $X\in R$, либо $X\notin R$, что равносильно ``либо $\vdash\alpha(X)$, либо $\vdash\neg\alpha(X)$'' и невыводимость $\alpha(X)$ влечет выводимость $\neg\alpha(X)$. //Да к тому же $X$ фиксирован, поэтому 
+	\begin{itemize}
+		\item $\alpha(X)$\\
+		$\beta(X)[y\coloneqq 1]$ //Нетрудно понять/\\
+		$\beta(X)[y\coloneqq 1]\to\exists\,y.\beta(X)$\\
+		$\exists\,y.\beta(X)$
+		\item $\neg\alpha(X)$\\
+		$\beta(X)[y\coloneqq 0]$ //Нетрудно понять/\\
+		$\beta(X)[y\coloneqq 0]\to\exists\,y.\beta(X)$\\
+		$\exists\,y.\beta(X)$
+	\end{itemize}
+	$\forall\,a.\forall\,b.\beta(X,a)\wedge\beta(X,b)\to a=b$. Аналогично ($X$ все еще фиксирован) разберем 2 случая:
+	\begin{itemize}
+		\item $\alpha(X)$\\
+		$\neg\neg\alpha(X)\vee\neg y=0$\\
+		$\neg(\neg\alpha(X)\wedge y=0)$\\
+		$\alpha(X)\wedge y=1\vee\neg\alpha(X)\wedge y=0$\\
+		$\alpha(X)\wedge y=1$ //$a\vee b,\neg b\vdash a$/\\
+		$y=1$
+		
+		По теореме о дедукции получили $\beta(X,y)\to y=1$.
+		
+		$\beta(X,a)\wedge\beta(X,b)$\\
+		$\beta(X,a)$\\
+		$\beta(X,b)$\\
+		$a=1$\\
+		$b=1$\\
+		$a=b$
+		
+		По теореме о дедукции получили $\beta(X,a)\wedge\beta(X,b)$. Навесим с помощью $T$ два квантора всеобщности и получим требуемое.
+		\item $\vdash\neg\alpha(X)$. Здесь все аналогично, только после первого применения т. о дедукции докажем $\beta(X,y)\to y=0$. 
+	\end{itemize}
+\end{itemize}
+
+81b. Представимость $C_R$ влечет выразимость $R$.
+
+Пусть $C_R$ представима с помощью $\alpha(X,y)$. Тогда выберем формулу $\beta(X)\equiv\alpha(X, 1)$. Покажем, что с помощью нее можно выразить $R$.
+\begin{itemize}
+	\item $X\in R$ влечет $\vdash\beta(X)$. Пусть $X\in R$. Тогда $C_R(X)=1$, тогда $\vdash\alpha(X,1)$ по определению. А это и есть $\vdash\beta(X)$.
+	\item $X\notin R$ влечет $\vdash\neg\beta(X)$. Пусть $X\notin R$. Тогда $C_R(X)=0$, тогда $\vdash\alpha(X,0)$. $y$ может быть только $0$ или $1$. А по определению при $y=1$ не выводится $\alpha(X, y)$. Из-за второго свойства это и получим.
+	
+	$X$ фиксирован, значит $\alpha(X,1)$ не имеет свободных переменных, поэтому вывод того, что можно разбирать случаи, будет как раньше.
+	\begin{itemize}
+		\item $\neg\alpha(X,1)$ //О, вывели/
+		\item $\alpha(X,1)$\\
+		$\alpha(X,0)$\\
+		$\forall\,a.\forall\,b.\alpha(X,a)\wedge\alpha(X,b)\to a=b$\\
+		$\alpha(X,0)\wedge\alpha(X,1)\to 0=1$ //$(a,b)\mapsto(0,1)$/\\
+		$0=1$
+		$\neg0=1$ //Противоречие, но мы же хотим в обоих случаях вывести $\neg\alpha(X,1)$/\\
+		$0=1\to\neg0=1\to\neg\alpha(X,1)$ //$\alpha\to\neg\alpha\to\beta$, уже было/\\
+		$\neg\alpha(X,1)$ //О, снова вывели/\\
+	\end{itemize}
+\end{itemize}
+
+\bigskip
+
+\begin{tabular*}{\textwidth}{l l l}
+	$a\to a$ &//...&/\\
+	$a\to L$ &//(6)&/\\
+	$(a\to L)\to a\to(a\to L)$ &//(1)&/\\
+	$a\to a\to L$ &//МП&/\\
+	$(a\to a)\to(a\to a\to L)\to(a\to L)$ &//(2)&/\\
+	$(a\to a\to L)\to(a\to L)$ &//МП&/\\
+	$a\to L$ &//МП&/\\
+	$\neg L\to a\to\neg L$ &//(1)&/\\
+	$\neg L$ &//$\Gamma$&/\\
+	$a\to\neg L$ &//МП&/\\
+	$L\to\neg L\to L\wedge\neg L$ &//(5)&/\\
+	$(L\to\neg L\to L\wedge\neg L)\to a\to(L\to\neg L\to L\wedge\neg L)$ &//МП&/\\
+	$a\to(L\to\neg L\to L\wedge\neg L)$ &//МП&/\\
+	$(a\to L)\to(a\to L\to(\neg L\to\L\wedge\neg L))\to(a\to(\neg L\to L\wedge\neg L))$ &//(2)&/\\
+	$(a\to L\to(\neg L\to\L\wedge\neg L))\to(a\to(\neg L\to L\wedge\neg L))$ &//МП&/\\
+	$a\to(\neg L\to L\wedge\neg L)$ &//МП&/\\
+	$(a\to \neg L)\to(a\to \neg L\to L\wedge\neg L)\to(a\to L\wedge\neg L)$ &//(2)&/\\
+	$(a\to \neg L\to L\wedge\neg L)\to(a\to L\wedge\neg L)$ &//МП&/\\
+	$a\to L\wedge\neg L$ &//МП&/\\
+	&&\\
+	&&\\
+	$\neg a\to \neg a$ &//...&/\\
+	$\neg a\to L$ &//(7)&/\\
+	$(\neg a\to L)\to \neg a\to(\neg a\to L)$ &//(1)&/\\
+	$\neg a\to \neg a\to L$ &//МП&/\\
+	$(\neg a\to \neg a)\to(\neg a\to \neg a\to L)\to(\neg a\to L)$ &//(2)&/\\
+	$(\neg a\to \neg a\to L)\to(\neg a\to L)$ &//МП&/\\
+	$\neg a\to L$ &//МП&/\\
+	$\neg L\to \neg a\to\neg L$ &//(1)&/\\
+	$\neg L$ &//$\Gamma$&/\\
+	$\neg a\to\neg L$ &//МП&/\\
+	$L\to\neg L\to L\wedge\neg L$ &//(5)&/\\
+	$(L\to\neg L\to L\wedge\neg L)\to \neg a\to(L\to\neg L\to L\wedge\neg L)$ &//МП&/\\
+	$\neg a\to(L\to\neg L\to L\wedge\neg L)$ &//МП&/\\
+	$(\neg a\to L)\to(\neg a\to L\to(\neg L\to\L\wedge\neg L))\to(\neg a\to(\neg L\to L\wedge\neg L))$ &//(2)&/\\
+	$(\neg a\to L\to(\neg L\to\L\wedge\neg L))\to(\neg a\to(\neg L\to L\wedge\neg L))$ &//МП&/\\
+	$\neg a\to(\neg L\to L\wedge\neg L)$ &//МП&/\\
+	$(\neg a\to \neg L)\to(\neg a\to \neg L\to L\wedge\neg L)\to(\neg a\to L\wedge\neg L)$ &//(2)&/\\
+	$(\neg a\to \neg L\to L\wedge\neg L)\to(\neg a\to L\wedge\neg L)$ &//МП&/\\
+	$\neg a\to L\wedge\neg L$ &//МП&/\\
+\end{tabular*}
+
+\end{document}

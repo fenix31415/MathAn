@@ -1,0 +1,45 @@
+\shapka{Касательные пространства}
+
+\begin{Lemma*}
+    $\Phi\colon O\subset\rmy[k]\to\rmy$~--- $C^r$ параметризация многообразия $M$ в окрестности $U(p)\cap M$, $p\in M,\,\Phi(t_0)=p$. \THEN образ $\Phi'(t_0)$ при действии на $\rmy$~--- $k$-мерное подпространство, которое не зависит от $\Phi$.
+\end{Lemma*}
+
+\begin{Proof}
+    $\Phi$~--- пареметризация, значит $\operatorname{rank}\Phi'=k\Rightarrow$ образ $k$-мерен. Пусть есть $\Phi_2$ ($\Phi_2(\overline{t_0})=p=\Phi(t_0)$), тогда $\Phi_2=\Phi\circ\Psi$, где $\Psi$~--- диффеоморфизм, а значит $\Phi_2'(\overline{t_0})=\Phi'(t_0)\circ\Psi'(\overline{t_0})$.\\ $T_{p,\Phi_2}=\{\Phi_2'(\overline{t_0})v:v\in\rmy[k]\}=\{\Phi'(t_0)\circ\Psi'(\overline{t_0})v:v\in\rmy[k]\}=\{\Phi'(t_0)u:u\in\rmy[k]\}=T_{p,\Phi}$
+\end{Proof}
+
+\begin{defin*}
+    В условиях леммы $\Phi'(t_0)(\rmy[m])$~--- афинное касательное пространство $=T_p M$
+\end{defin*}
+
+{
+\newcommand{\tpm}{T_p M}
+\begin{NB*}[касательное пространство в терминах векторов скорости гладких путей]\leavevmode
+    \begin{itemize}
+        \item $\forall\,v\in\tpm\;\exists\,\gamma\colon[-1,1]\to\rmy,\,\gamma([-1,1])\subset M$ (гладкий путь), что $\gamma(0)=p,\,v=\gamma'(0)$
+        \item Пусть $\gamma\colon[-\varepsilon,\varepsilon]\to M\subset\rmy$~--- гладкий путь, причем $\gamma(0)=p\Rightarrow \gamma'(0)\in\tpm$
+    \end{itemize}
+\end{NB*}
+
+\begin{Proof}\leavevmode
+    \begin{itemize}
+        \item $v=\phi'(p)h$. Тогда пусть $\gamma(t)\coloneqq\phi(p+t h)$. Да, $\gamma(0)=p$ и $v=\gamma'(0)$.
+        \item Рассмотрим $\psi\colon\rmy[]\to\rmy[k]\coloneqq\phi^{-1}\circ\gamma$. В окрестности $0$ оно гладкое, как композиция пути и гладкой параметризации. Тогда $\gamma=\phi\circ\psi\Rightarrow\gamma'(0)=\phi'(p)\cdot\psi'(0)\in\tpm$
+    \end{itemize}
+\end{Proof}
+}
+
+\begin{Example*}[касательное пространство к графику функции и к поверхности уровня]{~\\}
+	$f\colon\rmy\to\rmy[]$ гладкое, график $f=\left\{(x,y)\middle|y=f(x)\right\}$.\\
+	Тогда $p=(x_0,f(x_0)),\;\phi(x)=\begin{pmatrix}
+		x\\f(x)
+	\end{pmatrix},\;\phi'(x)=\begin{pmatrix}
+		E\\f'_{x_1}(x) \ldots f'_{x_m}(x)
+	\end{pmatrix}$. Тогда касательное пространство будет $\phi'(p)(\rmy)=(h_1,\ldots,h_m,f'_{x_1}(p)h_1+\ldots+f'_{x_m}(p)h_m)$. Что можно переписать как $y-f(x^0)=f'_{x_1}(x^0)(x_1-x^0_1)+\ldots+f'_{x_m}(x^0)(x_m-x^0_m)$. Даже походит на уравнение касательной плоскости.
+	
+	
+	(??? про поверхность. Ну видимо это тоже своего рода график, определенный неявной функцией. Но для красивой формулы понять бы, что л.ч = 0 ???)
+\end{Example*}
+
+
+\newpage
